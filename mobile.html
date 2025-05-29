@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Fernando Topanotti Tarabay - Neurologista (Mobile)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Importação da fonte Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1d4ed8;
+            --light-blue: #eff6ff;
+            --background-white-subtle: #fbfbfc; /* Um branco muito suave, quase imperceptível */
+            --gray-light: #f9fafb;
+            --gray-medium: #e5e7eb;
+            --gray-dark: #1f2937;
+            --text-gray: #4b5563;
+            --accent-blue: #60a5fa;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.2);
+            --whatsapp-green: #25d366;
+            --whatsapp-dark-green: #1da851;
+        }
+
+        /* Base styles - Mobile First */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: var(--text-gray);
+            background-color: var(--background-white-subtle);
+            overflow-x: hidden;
+            /* Evita rolagem horizontal indesejada */
+            font-size: 16px;
+            /* Tamanho base da fonte */
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 100%;
+            /* Ocupa a largura total no mobile */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px var(--shadow-medium), 0 2px 4px -1px var(--shadow-light);
+            padding: 1rem 0;
+            /* Menos padding no mobile */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem; /* Padding interno para o container do header */
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            /* Tamanho da fonte ajustado para mobile */
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-animation {
+            width: 2rem;
+            /* Tamanho do logo ajustado */
+            height: 2rem;
+            /* Tamanho do logo ajustado */
+            color: var(--primary-blue);
+            animation: pulse-brain 2s infinite ease-in-out;
+        }
+
+        /* Navigation - Mobile Specific */
+        nav {
+            display: none;
+            /* Esconde a navegação por padrão */
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px var(--shadow-medium);
+            padding: 1rem 0;
+            align-items: center;
+            gap: 0.75rem; /* Espaçamento entre os botões */
+            animation: slideDown 0.3s ease-out forwards;
+            border-top: 1px solid var(--gray-medium);
+        }
+
+        nav.open {
+            display: flex;
+            /* Mostra a navegação quando a classe 'open' é adicionada */
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0;
+                transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0);
+            }
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.85rem 1.25rem; /* Padding maior para facilitar o toque */
+            font-size: 1.1rem;
+            /* Tamanho maior para facilitar o toque */
+            font-weight: 500;
+            color: var(--text-gray);
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            width: calc(100% - 2rem);
+            /* Ocupa quase 100% da largura com padding */
+            text-align: center;
+            border-radius: 0.5rem;
+        }
+
+        .nav-button:hover {
+            color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+
+        .nav-button.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+            background-color: var(--light-blue);
+        }
+
+        .nav-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0px; /* Alinha o underline com o botão */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            animation: expandUnderline 0.3s forwards;
+        }
+
+        .nav-underline {
+            display: none;
+            /* Escondido no mobile */
+        }
+
+        @keyframes expandUnderline {
+            from { width: 0;
+            }
+            to { width: 80%;
+            }
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: block; /* Sempre visível no mobile */
+            color: var(--gray-dark);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-button:hover {
+            color: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column; /* Coluna no mobile */
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 0; /* Menos padding no mobile */
+            text-align: center;
+        }
+
+        .avatar-container {
+            width: 14rem;
+            /* Tamanho da imagem do avatar ajustado */
+            height: 14rem;
+            /* Tamanho da imagem do avatar ajustado */
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 5px solid var(--primary-blue); /* Borda ajustada */
+            box-shadow: 0 8px 16px var(--shadow-dark);
+            /* Sombra ajustada */
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .avatar-container:hover {
+            transform: scale(1.05);
+            /* Escala menor no hover para mobile */
+        }
+
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            /* Tamanho da fonte ajustado */
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content .description {
+            font-size: 1rem;
+            /* Tamanho da fonte ajustado */
+            color: var(--text-gray);
+            margin: 1rem auto; /* Margem ajustada */
+            max-width: 90%;
+            /* Limita a largura do texto */
+        }
+
+        .hero-content .description p {
+            margin-bottom: 1rem;
+            /* Margem ajustada */
+        }
+
+        .hero-content .text-blue {
+            color: var(--primary-blue);
+            font-weight: 500;
+            font-size: 1.1rem; /* Tamanho da fonte ajustado */
+        }
+
+        .hero-content .text-bold {
+            font-weight: 600;
+            color: var(--gray-dark); /* Alterado de text-gray para gray-dark para mais contraste */
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column; /* Botões empilhados */
+            align-items: center;
+            gap: 0.75rem; /* Espaçamento entre os botões */
+            width: 100%;
+            /* Ocupa a largura total para centralizar os botões */
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 1.25rem; /* Padding ajustado */
+            font-size: 0.95rem;
+            /* Tamanho da fonte ajustado */
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+            text-decoration: none;
+            width: 90%;
+            /* Botões com largura maior no mobile */
+            max-width: 300px;
+            /* Limita a largura máxima dos botões */
+        }
+
+        .primary-button {
+            background-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 3px 6px rgba(37, 99, 235, 0.3);
+            /* Sombra ajustada */
+        }
+
+        .primary-button:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-2px) scale(1.01); /* Transformação menor no hover */
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.4);
+        }
+
+        .outline-button {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .outline-button:hover {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            border-color: var(--dark-blue);
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        .whatsapp-button {
+            background-color: var(--whatsapp-green);
+            color: white;
+            box-shadow: 0 3px 6px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            background-color: var(--whatsapp-dark-green);
+            transform: translateY(-2px) scale(1.01);
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.4);
+        }
+
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            padding: 2.5rem 0; /* Padding ajustado para mobile */
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h3 {
+            font-size: 1.75rem;
+            /* Tamanho da fonte ajustado */
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin-bottom: 1.5rem; /* Margem ajustada */
+            text-align: center;
+        }
+        
+        #about-section h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 6px var(--shadow-medium); /* Sombra ajustada */
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease, color 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 1.5rem; /* Espaçamento entre os cards */
+        }
+        .card:last-child {
+            margin-bottom: 0;
+            /* Remove margem do último card */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            /* Transformação menor no hover */
+            box-shadow: 0 4px 10px var(--shadow-dark);
+            /* Sombra ajustada */
+        }
+
+        .card-header {
+            padding: 1.25rem;
+            /* Padding ajustado */
+            border-bottom: 1px solid var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            /* Tamanho da fonte ajustado */
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-top: 0.75rem; /* Margem ajustada */
+            transition: color 0.3s ease;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            /* Tamanho da fonte ajustado */
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        .card-content {
+            padding: 1.25rem;
+            /* Padding ajustado */
+            transition: color 0.3s ease;
+        }
+        
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem; /* Espaçamento ajustado */
+            margin-bottom: 1.25rem;
+            /* Margem ajustada */
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item-icon {
+            flex-shrink: 0;
+            color: var(--primary-blue);
+            width: 1.3rem; /* Tamanho do ícone ajustado */
+            height: 1.3rem;
+            /* Tamanho do ícone ajustado */
+            margin-top: 0.1rem;
+        }
+
+        .info-item-content h4 {
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin: 0 0 0.2rem 0; /* Margem ajustada */
+            line-height: 1.4;
+            font-size: 1rem; /* Tamanho da fonte ajustado */
+        }
+
+        .info-item-content p, .info-item-content a {
+            font-size: 0.85rem;
+            /* Tamanho da fonte ajustado */
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .specialty-card .card-header {
+            padding-bottom: 1.25rem;
+            padding-top: 1.25rem;
+        }
+        .specialty-card .card-title {
+            margin-top: 0;
+        }
+        .specialty-card .card-content {
+            text-align: center;
+        }
+
+        .specialty-card:hover {
+            background-color: var(--primary-blue);
+        }
+        .specialty-card:hover .card-header {
+            border-bottom-color: var(--dark-blue);
+        }
+        .specialty-card:hover .card-title,
+        .specialty-card:hover .card-content p {
+            color: white;
+        }
+
+        .contact-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Espaçamento ajustado */
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem; /* Espaçamento ajustado */
+        }
+
+        .contact-item .icon-circle {
+            background-color: var(--light-blue);
+            padding: 0.65rem; /* Padding ajustado */
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary-blue);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-item:hover .icon-circle {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: scale(1.05); /* Transformação menor no hover */
+        }
+
+        .contact-item-content .label {
+            font-weight: 600;
+            color: var(--gray-dark);
+            display: block;
+            margin-bottom: 0.2rem; /* Margem ajustada */
+            font-size: 0.95rem;
+            /* Tamanho da fonte ajustado */
+        }
+
+        .contact-item-content .value {
+            color: var(--text-gray);
+            font-size: 0.9rem; /* Tamanho da fonte ajustado */
+            line-height: 1.5;
+        }
+        
+        .contact-socials {
+            margin-top: 2rem;
+            /* Margem ajustada */
+            padding-top: 1.25rem;
+            /* Padding ajustado */
+            border-top: 1px solid var(--gray-medium);
+        }
+
+        .contact-socials h4 {
+            font-size: 1.15rem;
+            /* Tamanho da fonte ajustado */
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 0.75rem; /* Margem ajustada */
+            text-align: center;
+        }
+
+        .contact-socials .social-icons {
+            justify-content: center;
+            gap: 1.25rem; /* Espaçamento entre os ícones */
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+            /* Margem ajustada */
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem; /* Tamanho da fonte ajustado */
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 0.4rem; /* Margem ajustada */
+        }
+
+        .input-field,
+        textarea {
+            width: calc(100% - 1.6rem);
+            /* Ajuste: para ter um padding interno de 0.8rem em cada lado */
+            padding: 0.6rem 0.8rem;
+            /* Padding ajustado */
+            border: 1px solid var(--gray-medium);
+            border-radius: 0.4rem; /* Raio da borda ajustado */
+            font-size: 0.9rem;
+            /* Tamanho da fonte ajustado */
+            color: var(--gray-dark);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            /* Garante que o padding não aumente a largura total */
+        }
+
+        .input-field:focus,
+        textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2); /* Sombra ajustada */
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 70px; /* Altura mínima ajustada */
+        }
+
+        .social-icons a {
+            color: var(--text-gray);
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            font-size: 1.3rem; /* Tamanho dos ícones ajustado */
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-blue);
+            transform: translateY(-2px); /* Transformação menor no hover */
+        }
+
+        .no-underline {
+            text-decoration: none;
+        }
+        .no-underline:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gray-dark);
+            color: white;
+            padding: 1.5rem 0; /* Padding ajustado */
+            text-align: center;
+        }
+
+        footer .flex-container {
+            display: flex;
+            flex-direction: column; /* Coluna no mobile */
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem; /* Espaçamento ajustado */
+        }
+
+        footer .logo-container {
+            margin-bottom: 0.5rem;
+            /* Margem ajustada */
+        }
+
+        footer .logo-container span {
+            font-size: 1.4rem;
+            /* Tamanho da fonte ajustado */
+            font-weight: 700;
+            color: white;
+        }
+
+        footer .text-gray-400 {
+            color: #9ca3af;
+        }
+
+        footer .footer-links {
+            display: flex;
+            flex-direction: column; /* Links empilhados */
+            gap: 0.5rem;
+            /* Espaçamento entre os links */
+        }
+
+        footer .footer-links a {
+            color: var(--text-gray);
+            transition: color 0.3s ease-in-out;
+            text-decoration: none;
+            font-size: 0.9rem; /* Tamanho da fonte ajustado */
+        }
+
+        footer .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            padding-top: 1rem;
+            /* Padding ajustado */
+            border-top: 1px solid #374151;
+            margin-top: 1.5rem;
+            /* Margem ajustada */
+            font-size: 0.8rem;
+            /* Tamanho da fonte ajustado */
+            color: var(--text-gray);
+        }
+
+        /* General utility classes */
+        .space-x-6 > *:not([hidden]) ~ *:not([hidden]) { margin-left: 1rem;
+        } /* Ajustado para mobile */
+        .gap-8 { gap: 1.5rem;
+        } /* Ajustado para mobile */
+        .flex { display: flex;
+        }
+        .items-center { align-items: center;
+        }
+        .grid { display: grid;
+        }
+        .w-full { width: 100%;
+        }
+
+        /* Animation delays for fade-in-up */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(15px); /* Transformação menor */
+            animation: fade-in-up 0.7s ease-out forwards;
+        }
+
+        .fade-in-up.delay-1 { animation-delay: 0.1s;
+        }
+        .fade-in-up.delay-2 { animation-delay: 0.2s;
+        }
+        .fade-in-up.delay-3 { animation-delay: 0.3s;
+        }
+        .fade-in-up.delay-4 { animation-delay: 0.4s;
+        }
+        .fade-in-up.delay-5 { animation-delay: 0.5s;
+        } /* Adicionado para especialidades */
+        
+        @keyframes fade-in-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0;
+            }
+            to { opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments for mobile */
+        /* Geral */
+        .container {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Grid */
+        .grid { 
+            grid-template-columns: 1fr;
+            /* Todas as grids se tornam uma única coluna no mobile */
+            gap: 1.5rem;
+            /* Espaçamento padrão para grids no mobile */
+        }
+
+        /* Section Específica: Sobre Mim */
+        #about-section .grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    min-height: calc(100vh - 150px); /* Ocupa quase a altura total da tela (descontando header/footer) */
+}
+        #about-section .about-image-container {
+            order: -1;
+            /* Coloca a imagem antes do texto no mobile */
+            margin-bottom: 1.5rem;
+            /* Espaçamento entre a imagem e o texto */
+            width: 100%;
+            /* Ocupa a largura total disponível no contêiner */
+            display: flex;
+            /* Permite usar flexbox para centralizar a imagem interna */
+            justify-content: center;
+            /* Centraliza a imagem horizontalmente */
+        }
+        #about-section .about-image {
+            width: 80%;
+            /* Ajuste o tamanho da imagem no mobile */
+            max-width: 250px;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px var(--shadow-medium); /* Sombra ajustada */
+        }
+        #about-section .about-text-content {
+            text-align: center;
+            /* Centraliza o texto no mobile */
+        }
+        #about-section .about-text-content p {
+            margin-bottom: 1rem;
+            /* Margem entre parágrafos */
+        }
+        #about-section .about-text-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Espaçamento para a seção de especialidades */
+        #specialties-section .grid {
+            gap: 1.5rem;
+            /* Espaçamento ajustado para as especialidades */
+        }
+
+        /* Alinhamento da seção de contato no mobile */
+        .contact-socials h4 { text-align: center;
+        }
+        .contact-socials .social-icons { justify-content: center;
+        }
+
+        /* Remove qualquer estilo de desktop */
+        .md\:w-1\/3, .md\:w-2\/3, .md\:grid-cols-2, .lg\:grid-cols-4, .lg\:grid-cols-5 {
+            width: auto;
+            grid-template-columns: 1fr;
+        }
+        .md\:mt-0 { margin-top: auto;
+        }
+        .space-x-6 { margin-left: 0; gap: 1.5rem;
+        } /* Reinicia o espaçamento para mobile */
+
+        /* Nova regra para centralizar o botão usando flexbox */
+        .button-center-wrapper {
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            width: 100%;
+            /* Garante que o contêiner ocupa a largura total para centralizar */
+            margin-top: 1.25rem;
+            /* Adiciona um pouco de espaço acima do botão, se desejar */
+        }
+
+        .about-carousel {
+    position: relative;
+    width: 80%;
+    max-width: 250px;
+    height: auto;
+    /* Centraliza o carrossel dentro do about-image-container */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-carousel .carousel-image {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Adicionado/Modificado: Posiciona o início da imagem no centro */
+    transform: translateX(-50%); /* Adicionado: Move a imagem 50% da sua própria largura para a esquerda */
+    width: 100%; /* Garante que a imagem ocupe a largura total do carrossel */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px var(--shadow-medium);
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.about-carousel .carousel-image.active {
+    opacity: 1;
+    position: relative;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-button {
+    left: -1.5rem; /* Ajuste a posição para fora da imagem */
+}
+
+.next-button {
+    right: -1.5rem; /* Ajuste a posição para fora da imagem */
+}
+
+.carousel-control i {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Media query para telas menores que 480px, ajustando a posição dos botões para não saírem da tela */
+@media (max-width: 480px) {
+    .prev-button {
+        left: 0.5rem;
+    }
+
+    .next-button {
+        right: 0.5rem;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex">
+            <div class="logo-container">
+                <i data-lucide="brain" class="logo-animation"></i>
+                <h1>Dr. Fernando Topanotti</h1>
+            </div>
+            <nav id="main-nav">
+                <button class="nav-button" data-tab="about">Sobre Mim</button>
+                <button class="nav-button" data-tab="education-experience">Formação e Experiência</button>
+                <button class="nav-button" data-tab="specialties">Especialidades</button>
+                <button class="nav-button" data-tab="contact">Contato</button>
+                <div class="nav-underline"></div>
+            </nav>
+            <button id="mobile-menu-button" class="menu-button">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="about-section" class="content-section container">
+            <div id="hero-content-wrapper"> <div class="hero-section">
+                    <div class="avatar-container fade-in-up delay-1">
+                        <img src="https://static.wixstatic.com/media/47c0e9_f22dc9bde8b94d269b1c7b175b8323ed~mv2.jpg/v1/fill/w_406,h_334,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.jpg" alt="Dr. Fernando Tarabay" class="avatar-image">
+                    </div>
+                    <div class="hero-content fade-in-up delay-2">
+                        <h2>Dr. Fernando Topanotti Tarabay</h2>
+                        <div class="description">
+                            <p class="text-blue">Pós Graduado em Neurologia Vascular, Pós Graduado em Dor.</p>
+                            <p class="text-blue">CRM/SC 22270 – RQE 18272.</p>
+                            <p>Especialista em neurologia, com foco em <span class="text-bold">dor crônica</span> e <span class="text-bold">tratamento de AVC</span>, dedicado ao diagnóstico e tratamento de doenças do sistema nervoso com abordagem humanizada e baseada em evidências científicas.</p>
+                            <p>Atualmente atendo em Criciúma, nos hospitais <span class="text-bold">Hospital São João Batista</span>, <span class="text-bold">Aura Neurologia</span> e <span class="text-bold">Hospital São José</span>.</p>
+                        </div>
+                        <div class="hero-buttons">
+                            <a href="https://wa.me/+5548991140848" target="_blank" class="button whatsapp-button no-underline">
+                                <i data-lucide="whatsapp" style="margin-right: 0.5rem;"></i> WhatsApp
+                            </a>
+                            <button class="button primary-button" data-tab="contact">
+                                <i data-lucide="calendar" style="margin-right: 0.5rem;"></i> Agendar Consulta
+                            </button>
+                            <button class="button outline-button" data-tab="specialties">
+                                Minhas Especialidades
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Sobre Mim</h3>
+            <div class="grid items-center">
+                <div class="about-text-content fade-in-up delay-1">
+                    <p>Formado em Medicina pela Universidade do Extremo Sul Catarinense (UNESC), dedico-me a oferecer o melhor cuidado aos meus pacientes, utilizando as mais recentes técnicas e conhecimentos na área. Minha paixão é ajudar pessoas a terem uma vida mais saudável e plena.</p>
+                    <p>Minha abordagem é centrada no paciente, buscando entender suas necessidades individuais e oferecer um tratamento humanizado e personalizado. Acredito que a comunicação clara e a confiança são fundamentais para o sucesso do tratamento.</p>
+                </div>
+                <div class="about-image-container fade-in-up delay-2">
+    <div class="about-carousel">
+    <img src="ftFernando.jpg" class="about-image carousel-image active" alt="Dr. Fernando Tarabay">
+    <img src="ftFernando2.png" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
+    <img src="ftFernando3.png" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
+    <button class="carousel-control prev-button">
+        <i data-lucide="chevron-left"></i>
+    </button>
+    <button class="carousel-control next-button">
+        <i data-lucide="chevron-right"></i>
+    </button>
+</div>
+</div>
+
+            </div>
+        </section>
+
+        <section id="education-experience-section" class="content-section container">
+            <h3>Formação e Experiência</h3>
+            <div class="grid gap-8">
+                <div class="fade-in-up delay-1">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" style="margin-top: 0;">Formação Acadêmica</h4>
+                        </div>
+                        <div class="card-content">
+                            <ul class="info-list">
+                                <li class="info-item">
+                                    <i data-lucide="graduation-cap" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Medicina - UNESC (Universidade do Extremo Sul Catarinense)</h4>
+                                        <p>Início: 2010</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="award" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Residência em Neurologia - [Nome da Instituição]</h4>
+                                        <p>Ano de Conclusão</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="book-open" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Pós Graduação em Neurologia Vascular</h4>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="book-open" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Pós Graduação em Dor</h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in-up delay-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" style="margin-top: 0;">Experiência Profissional</h4>
+                        </div>
+                        <div class="card-content">
+                            <ul class="info-list">
+                                <li class="info-item">
+                                    <i data-lucide="building" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Aura Neurologia - Criciúma, SC</h4>
+                                        <p>Atuação atual</p>
+                                        <a href="https://www.auraneurologia.com/" target="_blank" class="text-xs text-primary-blue no-underline hover:underline">Visitar site da clínica</a>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="hospital" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Hospital São João Batista - Criciúma, SC</h4>
+                                        <p>Atuação atual</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="hospital" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Hospital São José - Criciúma, SC</h4>
+                                        <p>Atuação atual</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="archive" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Hospital Moinhos de Vento - Anterior</h4>
+                                        <p>Atuação anterior</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="specialties-section" class="content-section container">
+            <h3>Minhas Especialidades</h3>
+            <div class="grid gap-6">
+                <div class="card specialty-card fade-in-up delay-1">
+                    <div class="card-header"><i data-lucide="brain" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Cefaleias e Enxaquecas</h4></div>
+                    <div class="card-content"><p class="card-description">Diagnóstico e tratamento de dores de cabeça crônicas e enxaquecas, com foco em qualidade de vida.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-2">
+                    <div class="card-header"><i data-lucide="activity" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Doenças Neurodegenerativas</h4></div>
+                    <div class="card-content"><p class="card-description">Manejo de Alzheimer, Parkinson e outras doenças degenerativas, visando retardar a progressão.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-3">
+                    <div class="card-header"><i data-lucide="line-chart" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Acidente Vascular Cerebral (AVC)</h4></div>
+                    <div class="card-content"><p class="card-description">Prevenção, diagnóstico precoce e reabilitação pós-AVC para minimizar sequelas.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-4">
+                    <div class="card-header"><i data-lucide="clipboard-list" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Distúrbios do<br>Sono</h4></div>
+                    <div class="card-content"><p class="card-description">Avaliação e tratamento de insônia, apneia do sono e outros transtornos que afetam o descanso.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-5">
+                    <div class="card-header"><i data-lucide="speech" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Epilepsia e Convulsões</h4></div>
+                    <div class="card-content"><p class="card-description">Diagnóstico preciso e plano de tratamento para controle de crises epilépticas.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-section" class="content-section container">
+            <h3>Entre em Contato</h3>
+            <div class="grid gap-8">
+                <div class="fade-in-up delay-1">
+                    <p>Para agendamentos, dúvidas ou mais informações, pode preencher o formulário ou utilizar um dos nossos contatos diretos abaixo.</p>
+                    
+                    <div class="contact-info-wrapper">
+                        <div class="contact-item">
+                            <div class="icon-circle"><i data-lucide="map-pin"></i></div>
+                            <div class="contact-item-content">
+                                <span class="label">Endereço</span>
+                                <span class="value">Rua Antônio de Lucca, 148, sala 111 - Pio Corrêa, Criciúma - SC, 88811-503</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-circle"><i data-lucide="phone"></i></div>
+                            <div class="contact-item-content">
+                                <span class="label">Telefone / WhatsApp</span>
+                                <span class="value">+55 48 99114-0848</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-circle"><i data-lucide="mail"></i></div>
+                            <div class="contact-item-content">
+                                <span class="label">Email</span>
+                                <span class="value">drtopanotti@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <h4>Siga-me nas redes</h4>
+                        <div class="social-icons flex space-x-6">
+                            <a href="https://www.instagram.com/fernandotopanotti.neuro" target="_blank" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                            <a href="https://www.facebook.com/fernando.topanottitarabay?mibextid=ZbWKwL" target="_blank" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                            <a href="https://wa.me/5548991140848" target="_blank" aria-label="WhatsApp"><i data-lucide="whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in-up delay-2">
+                    <form action="#" method="POST" class="bg-white p-5 rounded-lg shadow-medium">
+                        <div class="form-group">
+                            <label for="name">Nome Completo:</label>
+                            <input type="text" id="name" name="name" class="input-field" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" class="input-field" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone:</label>
+                            <input type="tel" id="phone" name="phone" class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem:</label>
+                            <textarea id="message" name="message" class="input-field" rows="4" required></textarea>
+                        </div>
+                        <div class="button-center-wrapper">
+                            <button type="submit" class="button primary-button w-full">Enviar Mensagem</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container flex-container">
+            <div class="logo-container">
+                <i data-lucide="brain" class="logo-animation" style="color: white;"></i>
+                <span style="color: white;">Dr. Fernando Tarabay</span>
+            </div>
+            <div class="social-icons flex space-x-3 mt-4">
+                <a href="https://www.instagram.com/fernandotopanotti.neuro" target="_blank" aria-label="Instagram"><i data-lucide="instagram" style="color: white;"></i></a>
+                <a href="https://www.facebook.com/fernando.topanottitarabay?mibextid=ZbWKwL" target="_blank" aria-label="Facebook"><i data-lucide="facebook" style="color: white;"></i></a>
+                <a href="https://wa.me/5548991140848" target="_blank" aria-label="WhatsApp"><i data-lucide="whatsapp" style="color: white;"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; <span id="current-year"></span> Dr. Fernando Topanotti Tarabay. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navButtons = document.querySelectorAll('.nav-button');
+        const contentSections = document.querySelectorAll('.content-section');
+        const heroButtons = document.querySelectorAll('.hero-section .button');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mainNav = document.getElementById('main-nav');
+        const carouselImages = document.querySelectorAll('.about-carousel .carousel-image');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        let currentIndex = 0;
+        let intervalId; // Variável para armazenar o ID do intervalo do carrossel
+
+        function showImage(index) {
+            carouselImages.forEach((img, i) => {
+                if (i === index) {
+                    img.classList.add('active');
+                } else {
+                    img.classList.remove('active');
+                }
+            });
+        }
+
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % carouselImages.length;
+            showImage(currentIndex);
+        }
+
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length;
+            showImage(currentIndex);
+        }
+
+        function startCarousel() {
+            // Limpa qualquer intervalo existente antes de iniciar um novo
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+            intervalId = setInterval(showNextImage, 6000);
+        }
+
+        // Event Listeners para os botões de navegação manual
+        if (prevButton) {
+            prevButton.addEventListener('click', () => {
+                showPrevImage();
+                startCarousel(); // Reinicia o carrossel após interação manual
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener('click', () => {
+                showNextImage();
+                startCarousel(); // Reinicia o carrossel após interação manual
+            });
+        }
+
+        // Inicializa a primeira imagem e o carrossel automático
+        if (carouselImages.length > 0) {
+            showImage(currentIndex);
+            startCarousel();
+        }
+
+        function setActiveTab(tabId, skipScroll = false) {
+            // Fecha o menu mobile se estiver aberto
+            if (mainNav.classList.contains('open')) {
+                mainNav.classList.remove('open');
+                // Verifica se o mobileMenuButton existe e se tem um ícone antes de tentar manipular
+                const icon = mobileMenuButton ? mobileMenuButton.querySelector('i') : null;
+                if (icon) {
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons(); // Recria os ícones para mudar de 'x' para 'menu'
+                }
+            }
+
+            navButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            const activeButton = document.querySelector(`.nav-button[data-tab="${tabId}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            const activeSection = document.getElementById(`${tabId}-section`);
+            if (activeSection) {
+                activeSection.classList.add('active');
+                if (!skipScroll) {
+                    // Rola para o topo da seção no mobile
+                    // Adicionado um pequeno atraso para garantir que a seção esteja visível antes de rolar
+                    setTimeout(() => {
+                        activeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+                activeSection.querySelectorAll('.fade-in-up').forEach(el => {
+                    el.classList.remove('fade-in-up');
+                    void el.offsetWidth; // Trigger reflow
+                    el.classList.add('fade-in-up');
+                });
+            }
+        }
+
+        // Adiciona evento de clique aos botões do menu principal para ativar as abas
+        navButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const tabId = event.target.dataset.tab;
+                setActiveTab(tabId);
+            });
+        });
+        // Mantém os eventos para os botões da seção hero
+        heroButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const tabId = event.target.dataset.tab || event.target.closest('button').dataset.tab;
+                if (tabId) {
+                    setActiveTab(tabId);
+                }
+            });
+        });
+        // Correção do erro no menu mobile: garantir que o mobileMenuButton e seu ícone existam antes de manipular
+        if (mobileMenuButton) { 
+            mobileMenuButton.addEventListener('click', () => {
+                mainNav.classList.toggle('open');
+                const icon = mobileMenuButton.querySelector('i');
+                if (icon) { 
+                    if (mainNav.classList.contains('open')) {
+                        icon.setAttribute('data-lucide', 'x'); // Ícone de 'x' quando o menu está aberto
+                    } else {
+                        icon.setAttribute('data-lucide', 'menu'); // Ícone de 'menu' quando o menu está fechado
+                    }
+                    lucide.createIcons();
+                }
+            });
+        }
+
+        // Ativa a primeira aba 'Sobre Mim' ao carregar a página
+        setActiveTab('about', true);
+        const currentYearSpan = document.getElementById('current-year');
+        if (currentYearSpan) {
+            currentYearSpan.textContent = new Date().getFullYear();
+        }
+    });
+
+    lucide.createIcons();
+</script>
+</body>
+</html>

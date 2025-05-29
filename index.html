@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando...</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .loading-message {
+            font-size: 1.5em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-message">
+        <p>Carregando a versão otimizada para o seu dispositivo...</p>
+    </div>
+
+    <script>
+        function detectarDispositivoERedirecionar() {
+            // Definimos 767px como a largura máxima para considerar como "mobile".
+            // Qualquer largura de viewport menor ou igual a 767px será direcionada para mobile.html.
+            // Qualquer largura maior que 767px será direcionada para desktop.html.
+            const larguraLimiteMobile = 767; 
+
+            // Linhas de depuração para o console (podem ser removidas após o teste)
+            console.log('Largura atual da janela (innerWidth): ' + window.innerWidth + 'px');
+            console.log('Largura limite para mobile (<=): ' + larguraLimiteMobile + 'px');
+
+            if (window.innerWidth <= larguraLimiteMobile) {
+                // Se a largura for menor ou igual ao limite, redireciona para a versão mobile
+                window.location.href = 'mobile.html';
+            } else {
+                // Caso contrário, redireciona para a versão desktop
+                window.location.href = 'desktop.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', detectarDispositivoERedirecionar);
+        
+        // Mantemos o listener de 'resize' para facilitar o teste em desktop,
+        // permitindo que você redimensione a janela e veja o redirecionamento.
+        // Em produção, para um site real, você pode considerar removê-lo se o
+        // redirecionamento inicial for o único ponto de interesse.
+        window.addEventListener('resize', detectarDispositivoERedirecionar);
+    </script>
+</body>
+</html>

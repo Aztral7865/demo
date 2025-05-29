@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Fernando Topanotti Tarabay - Neurologista</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Importação da fonte Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1d4ed8;
+            --light-blue: #eff6ff;
+            --background-white-subtle: #fbfbfc; /* Um branco muito suave, quase imperceptível */
+            --gray-light: #f9fafb;
+            --gray-medium: #e5e7eb;
+            --gray-dark: #1f2937;
+            --text-gray: #4b5563;
+            --accent-blue: #60a5fa;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+            --shadow-dark: rgba(0, 0, 0, 0.2);
+            --whatsapp-green: #25d366;
+            --whatsapp-dark-green: #1da851;
+        }
+
+        /* Base styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            color: var(--text-gray);
+            background-color: var(--background-white-subtle);
+            overflow-x: hidden;
+        }
+
+        .min-h-screen {
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 4px 6px -1px var(--shadow-medium), 0 2px 4px -1px var(--shadow-light);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-animation {
+            width: 2.5rem;
+            height: 2.5rem;
+            color: var(--primary-blue);
+            animation: pulse-brain 2s infinite ease-in-out;
+        }
+
+        /* Navigation */
+        nav {
+            display: none; /* Esconde a navegação por padrão no mobile */
+        }
+
+        nav.open {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 4px 6px -1px var(--shadow-medium);
+            padding: 1rem 0;
+            align-items: center;
+            gap: 0.75rem;
+            animation: slideDown 0.3s ease-out forwards;
+            border-top: 1px solid var(--gray-medium); /* Adiciona uma linha sutil no topo */
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.75rem 1.25rem;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-gray);
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            width: calc(100% - 2rem); /* Ocupa quase 100% da largura no mobile */
+            text-align: center;
+            border-radius: 0.5rem;
+        }
+
+        .nav-button:hover {
+            color: var(--primary-blue);
+            background-color: var(--light-blue);
+        }
+
+        .nav-button.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+            background-color: var(--light-blue);
+        }
+
+        .nav-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            animation: expandUnderline 0.3s forwards;
+            /* No mobile, essa linha será o indicador ativo para cada botão */
+        }
+
+        .nav-underline {
+            position: absolute;
+            bottom: -5px;
+            height: 3px;
+            background-color: var(--primary-blue);
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0; /* Escondido por padrão, visível apenas no desktop */
+            pointer-events: none;
+        }
+
+        @keyframes expandUnderline {
+            from { width: 0; }
+            to { width: 80%; }
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: block; /* Visível apenas no mobile */
+            color: var(--gray-dark);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .menu-button:hover {
+            color: var(--primary-blue);
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            display: flex;
+            flex-direction: column; /* Coluna no mobile */
+            align-items: center;
+            gap: 2rem;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .avatar-container {
+            width: 16rem;
+            height: 16rem;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 6px solid var(--primary-blue);
+            box-shadow: 0 10px 20px var(--shadow-dark);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .avatar-container:hover {
+            transform: scale(1.08);
+        }
+
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content .description {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin: 1.5rem auto;
+            max-width: 650px;
+        }
+
+        .hero-content .description p {
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-content .text-blue {
+            color: var(--primary-blue);
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        .hero-content .text-bold {
+            font-weight: 600;
+            color: var(--text-gray);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            border: 2px solid transparent;
+            text-decoration: none;
+        }
+
+        .primary-button {
+            background-color: var(--primary-blue);
+            color: white;
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .primary-button:hover {
+            background-color: var(--dark-blue);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .outline-button {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .outline-button:hover {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            border-color: var(--dark-blue);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .whatsapp-button {
+            background-color: var(--whatsapp-green);
+            color: white;
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            background-color: var(--whatsapp-dark-green);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 12px rgba(37, 211, 102, 0.4);
+        }
+
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+            padding: 3rem 0;
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        #about-section h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 8px var(--shadow-medium);
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, background-color 0.3s ease, color 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 16px var(--shadow-dark);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-top: 0.5rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-item-icon {
+            flex-shrink: 0;
+            color: var(--primary-blue);
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-top: 0.1rem;
+        }
+
+        .info-item-content h4 {
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin: 0 0 0.25rem 0;
+            line-height: 1.4;
+        }
+
+        .info-item-content p, .info-item-content a {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin: 0;
+            line-height: 1.4;
+        }
+        
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .specialty-card .card-header {
+            padding-bottom: 1.5rem;
+            padding-top: 1.5rem;
+        }
+        .specialty-card .card-title {
+            margin-top: 0;
+        }
+        .specialty-card .card-content {
+            text-align: center;
+        }
+
+        .specialty-card:hover {
+            background-color: var(--primary-blue);
+        }
+        .specialty-card:hover .card-header {
+            border-bottom-color: var(--dark-blue);
+        }
+        .specialty-card:hover .card-title,
+        .specialty-card:hover .card-content p {
+            color: white;
+        }
+
+        .contact-info-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+        }
+
+        .contact-item .icon-circle {
+            background-color: var(--light-blue);
+            padding: 0.75rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--primary-blue);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-item:hover .icon-circle {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .contact-item-content .label {
+            font-weight: 600;
+            color: var(--gray-dark);
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .contact-item-content .value {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .contact-socials {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-medium);
+        }
+
+        .contact-socials h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 1rem;
+            text-align: center; 
+        }
+
+        .contact-socials .social-icons {
+            justify-content: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field,
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-medium);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            color: var(--gray-dark);
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-field:focus,
+        textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .social-icons a {
+            color: var(--text-gray);
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            font-size: 1.5rem;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+
+        .no-underline {
+            text-decoration: none;
+        }
+        .no-underline:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--gray-dark);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer .flex-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .logo-container {
+            margin-bottom: 1rem;
+        }
+
+        footer .logo-container span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        footer .text-gray-400 {
+            color: #9ca3af;
+        }
+
+        footer .footer-links a {
+            color: var(--text-gray);
+            transition: color 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        footer .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            padding-top: 1.5rem;
+            border-top: 1px solid #374151;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* General utility classes */
+        .space-x-6 > *:not([hidden]) ~ *:not([hidden]) { margin-left: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .grid { display: grid; }
+        .w-full { width: 100%; }
+
+        /* Animation delays for fade-in-up */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fade-in-up 0.7s ease-out forwards;
+        }
+
+        .fade-in-up.delay-1 { animation-delay: 0.1s; }
+        .fade-in-up.delay-2 { animation-delay: 0.2s; }
+        .fade-in-up.delay-3 { animation-delay: 0.3s; }
+        
+        @keyframes fade-in-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 767px) { /* Estilos para telas menores que 768px (Mobile) */
+            header .container { padding: 0 1rem; }
+            header h1 { font-size: 1.5rem; }
+            .logo-animation { width: 2rem; height: 2rem; }
+
+            /* Hero Section */
+            .hero-section {
+                padding: 2rem 0;
+                flex-direction: column; /* Garante que os elementos fiquem empilhados */
+                text-align: center;
+            }
+            .hero-content h2 { font-size: 2rem; }
+            .hero-content .description { font-size: 1rem; }
+            .hero-buttons { 
+                flex-direction: column; /* Botões empilhados */
+                align-items: center; 
+                gap: 0.75rem; 
+            }
+            .button { 
+                width: 90%; /* Botões com largura maior */
+                max-width: 300px; 
+                padding: 0.65rem 1.25rem; 
+                font-size: 0.95rem; 
+            }
+
+            /* Content Sections */
+            .content-section { padding: 2rem 0; }
+            .content-section h3 { font-size: 1.75rem; }
+            .grid { 
+                grid-template-columns: 1fr; /* Todas as grids se tornam uma única coluna */
+            }
+            .card { margin-bottom: 1.5rem; } /* Espaçamento entre os cards no mobile */
+            .card:last-child { margin-bottom: 0; } /* Remove margem do último card para evitar espaço extra */
+
+            /* Forms */
+            .form-group label { font-size: 0.85rem; }
+            .input-field, textarea { padding: 0.6rem 0.8rem; font-size: 0.9rem; }
+            
+            /* Social Icons */
+            .social-icons { justify-content: center; margin-top: 1.5rem; }
+
+            /* Footer */
+            footer .flex-container { flex-direction: column; gap: 1rem; }
+            footer .logo-container { margin-bottom: 0.5rem; }
+            footer .footer-links { flex-direction: column; gap: 0.5rem; }
+            footer .footer-links a { font-size: 0.9rem; }
+            footer .social-icons { margin-top: 0.5rem; }
+            .copyright { margin-top: 1.5rem; padding-top: 1rem; font-size: 0.8rem; }
+            
+            /* Navegação Mobile - Específicos */
+            nav { /* A navegação padrão está 'display: none;' */
+                position: absolute; /* Para que o menu caia abaixo do header */
+                top: 100%; /* Inicia logo abaixo do header */
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 6px -1px var(--shadow-medium);
+                flex-direction: column; /* Itens empilhados */
+                align-items: center;
+                gap: 0.75rem; /* Espaçamento entre os botões */
+                padding: 1rem 0; /* Preenchimento vertical */
+                display: none; /* Escondido por padrão, aberto via JS */
+                animation: slideDown 0.3s ease-out forwards;
+                border-top: 1px solid var(--gray-medium); /* Borda para separar do header */
+            }
+
+            nav.open { /* Quando a classe 'open' é adicionada via JS */
+                display: flex; /* Mostra o menu */
+            }
+
+            .nav-button {
+                width: calc(100% - 2rem); /* Ocupa a largura total com um padding lateral */
+                padding: 0.85rem 1.25rem; /* Um pouco mais de padding para o clique */
+                font-size: 1.1rem; /* Um pouco maior para facilitar o toque */
+                text-align: center;
+            }
+
+            /* Remove o underline do desktop no mobile */
+            .nav-underline {
+                opacity: 0;
+                height: 0;
+                width: 0;
+            }
+
+            /* Estilo específico para a imagem e texto da seção "Sobre Mim" no mobile */
+            #about-section .grid {
+                flex-direction: column;
+                align-items: center; /* Centraliza os itens do grid horizontalmente */
+            }
+            #about-section .about-image-container {
+                order: -1; /* Coloca a imagem antes do texto no mobile */
+                margin-bottom: 1.5rem; /* Espaçamento entre a imagem e o texto */
+                width: 100%; /* Ocupa a largura total disponível no contêiner */
+                display: flex; /* Permite usar flexbox para centralizar a imagem interna */
+                justify-content: center; /* Centraliza a imagem horizontalmente */
+            }
+            #about-section .about-image {
+                width: 80%; /* Ajuste o tamanho da imagem no mobile */
+                max-width: 250px;
+                height: auto;
+            }
+            #about-section .about-text-content {
+                text-align: center; /* Centraliza o texto no mobile */
+            }
+        }
+
+        @media (min-width: 768px) { /* Estilos para telas maiores que 767px (Desktop) */
+            nav { 
+                display: flex; /* Mostra a navegação no desktop */ 
+                position: static; /* Volta à posição normal no fluxo do documento */
+                flex-direction: row; /* Itens em linha */
+                box-shadow: none;
+                padding: 0;
+                align-items: center;
+                gap: 2rem; /* Espaçamento entre os botões no desktop */
+                border-top: none; /* Remove a borda superior no desktop */
+            }
+            .menu-button { 
+                display: none; /* Esconde o botão de hambúrguer no desktop */
+            }
+            .hero-section { 
+                flex-direction: row; 
+                text-align: left; 
+            }
+            .md\:w-1\/3 { width: 33.333333%; }
+            .md\:w-2\/3 { width: 66.666667%; }
+            .hero-buttons { justify-content: flex-start; }
+            .content-section h3 { text-align: left; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            footer .flex-container { flex-direction: row; }
+            footer .logo-container { margin-bottom: 0; }
+            .hero-section { text-align: center; }
+            .hero-content { text-align: left; }
+            
+            /* Underline da navegação para desktop */
+            .nav-button.active::after { content: none; } /* Remove o underline do mobile no desktop */
+            .nav-underline {
+                opacity: 1; /* Mostra o underline no desktop */
+            }
+            
+            /* Alinhamento da seção de contato no desktop */
+            .contact-socials h4 { text-align: left; }
+            .contact-socials .social-icons { justify-content: flex-start; }
+
+            /* Estilos específicos para a imagem e texto da seção "Sobre Mim" no desktop */
+            #about-section .grid {
+                align-items: flex-start;
+            }
+            #about-section .about-image-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                padding-top: 0.5rem;
+                order: unset; /* Volta à ordem normal no desktop */
+                margin-bottom: 0;
+            }
+            #about-section .about-image {
+                width: 90%;
+                max-width: 350px;
+                height: auto;
+                border-radius: 0.75rem;
+                box-shadow: 0 4px 10px var(--shadow-medium);
+            }
+            #about-section .about-text-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 100%;
+                text-align: left; /* Alinha o texto à esquerda no desktop */
+            }
+            #about-section .about-text-content p {
+                margin-bottom: 1rem;
+            }
+            #about-section .about-text-content p:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .lg\:grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+        }
+
+        /* Espaçamento para a seção de especialidades */
+        #specialties-section .grid {
+            gap: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container flex">
+            <div class="logo-container">
+                <i data-lucide="brain" class="logo-animation"></i>
+                <h1>Dr. Fernando Topanotti</h1>
+            </div>
+            <nav id="main-nav">
+                <button class="nav-button" data-tab="about">Sobre Mim</button>
+                <button class="nav-button" data-tab="education-experience">Formação e Experiência</button>
+                <button class="nav-button" data-tab="specialties">Especialidades</button>
+                <button class="nav-button" data-tab="contact">Contato</button>
+                <div class="nav-underline"></div>
+            </nav>
+            <button id="mobile-menu-button" class="menu-button">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero-section" class="hero-section container">
+            <div class="avatar-container fade-in-up delay-1">
+                <img src="https://static.wixstatic.com/media/47c0e9_f22dc9bde8b94d269b1c7b175b8323ed~mv2.jpg/v1/fill/w_406,h_334,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/1.jpg" alt="Dr. Fernando Tarabay" class="avatar-image">
+            </div>
+            <div class="hero-content fade-in-up delay-2">
+                <h2>Dr. Fernando Topanotti Tarabay</h2>
+                <div class="description">
+                    <p class="text-blue">Pós Graduado em Neurologia Vascular, Pós Graduado em Dor.</p>
+                    <p class="text-blue">CRM/SC 22270 – RQE 18272.</p>
+                    <p>Especialista em neurologia, com foco em <span class="text-bold">dor crônica</span> e <span class="text-bold">tratamento de AVC</span>, dedicado ao diagnóstico e tratamento de doenças do sistema nervoso com abordagem humanizada e baseada em evidências científicas.</p>
+                    <p>Atualmente atendo em Criciúma, nos hospitais <span class="text-bold">Hospital São João Batista</span>, <span class="text-bold">Aura Neurologia</span> e <span class="text-bold">Hospital São José</span>.</p>
+                </div>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/+5548991140848" target="_blank" class="button whatsapp-button no-underline">
+                        <i data-lucide="whatsapp" style="margin-right: 0.5rem;"></i> WhatsApp
+                    </a>
+                     <button class="button primary-button" data-tab="contact">
+                        <i data-lucide="calendar" style="margin-right: 0.5rem;"></i> Agendar Consulta
+                    </button>
+                    <button class="button outline-button" data-tab="specialties">
+                        Minhas Especialidades
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about-section" class="content-section container">
+            <h3>Sobre Mim</h3>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="about-text-content fade-in-up delay-1">
+                    <p>Formado em Medicina pela Universidade do Extremo Sul Catarinense (UNESC), dedico-me a oferecer o melhor cuidado aos meus pacientes, utilizando as mais recentes técnicas e conhecimentos na área. Minha paixão é ajudar pessoas a terem uma vida mais saudável e plena.</p>
+                    <p>Minha abordagem é centrada no paciente, buscando entender suas necessidades individuais e oferecer um tratamento humanizado e personalizado. Acredito que a comunicação clara e a confiança são fundamentais para o sucesso do tratamento.</p>
+                </div>
+                <div class="about-image-container fade-in-up delay-2">
+                    <img src="ftFernando.jpg" alt="Dr. Fernando Tarabay" class="about-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="education-experience-section" class="content-section container">
+            <h3>Formação e Experiência</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="fade-in-up delay-1">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" style="margin-top: 0;">Formação Acadêmica</h4>
+                        </div>
+                        <div class="card-content">
+                            <ul class="info-list">
+                                <li class="info-item">
+                                    <i data-lucide="graduation-cap" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Medicina - UNESC (Universidade do Extremo Sul Catarinense)</h4>
+                                        <p>Início: 2010</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="award" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Residência em Neurologia - [Nome da Instituição]</h4>
+                                        <p>Ano de Conclusão</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="book-open" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Pós Graduação em Neurologia Vascular</h4>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="book-open" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Pós Graduação em Dor</h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in-up delay-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" style="margin-top: 0;">Experiência Profissional</h4>
+                        </div>
+                        <div class="card-content">
+                            <ul class="info-list">
+                                <li class="info-item">
+                                    <i data-lucide="building" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Aura Neurologia - Criciúma, SC</h4>
+                                        <p>Atuação atual</p>
+                                        <a href="https://www.auraneurologia.com/" target="_blank" class="text-xs text-primary-blue no-underline hover:underline">Visitar site da clínica</a>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="hospital" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Hospital São João Batista - Criciúma, SC</h4>
+                                        <p>Atuação atual</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="hospital" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Hospital São José - Criciúma, SC</h4>
+                                        <p>Atuação atual</p>
+                                    </div>
+                                </li>
+                                <li class="info-item">
+                                    <i data-lucide="archive" class="info-item-icon"></i>
+                                    <div class="info-item-content">
+                                        <h4>Hospital Moinhos de Vento - Anterior</h4>
+                                        <p>Atuação anterior</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="specialties-section" class="content-section container">
+            <h3>Minhas Especialidades</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card specialty-card fade-in-up delay-1">
+                    <div class="card-header"><i data-lucide="brain" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Cefaleias e Enxaquecas</h4></div>
+                    <div class="card-content"><p class="card-description">Diagnóstico e tratamento de dores de cabeça crônicas e enxaquecas, com foco em qualidade de vida.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-2">
+                    <div class="card-header"><i data-lucide="activity" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Doenças Neurodegenerativas</h4></div>
+                    <div class="card-content"><p class="card-description">Manejo de Alzheimer, Parkinson e outras doenças degenerativas, visando retardar a progressão.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-3">
+                    <div class="card-header"><i data-lucide="line-chart" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Acidente Vascular Cerebral (AVC)</h4></div>
+                    <div class="card-content"><p class="card-description">Prevenção, diagnóstico precoce e reabilitação pós-AVC para minimizar sequelas.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-4">
+                    <div class="card-header"><i data-lucide="clipboard-list" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Distúrbios do<br>Sono</h4></div>
+                    <div class="card-content"><p class="card-description">Avaliação e tratamento de insônia, apneia do sono e outros transtornos que afetam o descanso.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-5">
+                    <div class="card-header"><i data-lucide="speech" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Epilepsia e Convulsões</h4></div>
+                    <div class="card-content"><p class="card-description">Diagnóstico preciso e plano de tratamento para controle de crises epilépticas.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-section" class="content-section container">
+            <h3>Entre em Contato</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="fade-in-up delay-1">
+                    <p>Para agendamentos, dúvidas ou mais informações, pode preencher o formulário ou utilizar um dos nossos contatos diretos abaixo.</p>
+                    
+                    <div class="contact-info-wrapper">
+                        <div class="contact-item">
+                            <div class="icon-circle"><i data-lucide="map-pin"></i></div>
+                            <div class="contact-item-content">
+                                <span class="label">Endereço</span>
+                                <span class="value">Rua Antônio de Lucca, 148, sala 111 - Pio Corrêa, Criciúma - SC, 88811-503</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-circle"><i data-lucide="phone"></i></div>
+                            <div class="contact-item-content">
+                                <span class="label">Telefone / WhatsApp</span>
+                                <span class="value">+55 48 99114-0848</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon-circle"><i data-lucide="mail"></i></div>
+                            <div class="contact-item-content">
+                                <span class="label">Email</span>
+                                <span class="value">drtopanotti@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-socials">
+                        <h4>Siga-me nas redes</h4>
+                        <div class="social-icons flex space-x-6">
+                            <a href="https://www.instagram.com/fernandotopanotti.neuro" target="_blank" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                            <a href="https://www.facebook.com/fernando.topanottitarabay?mibextid=ZbWKwL" target="_blank" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+                            <a href="https://wa.me/5548991140848" target="_blank" aria-label="WhatsApp"><i data-lucide="whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in-up delay-2">
+                    <form action="#" method="POST" class="bg-white p-6 rounded-lg shadow-medium">
+                        <div class="form-group">
+                            <label for="name">Nome Completo:</label>
+                            <input type="text" id="name" name="name" class="input-field" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" class="input-field" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone:</label>
+                            <input type="tel" id="phone" name="phone" class="input-field">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensagem:</label>
+                            <textarea id="message" name="message" class="input-field" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="button primary-button w-full">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container flex-container">
+            <div class="logo-container">
+                <i data-lucide="brain" class="logo-animation" style="color: white;"></i>
+                <span style="color: white;">Dr. Fernando Tarabay</span>
+            </div>
+
+            <div class="social-icons flex space-x-3 mt-4 md:mt-0">
+                <a href="https://www.instagram.com/fernandotopanotti.neuro" target="_blank" aria-label="Instagram"><i data-lucide="instagram" style="color: white;"></i></a>
+                <a href="https://www.facebook.com/fernando.topanottitarabay?mibextid=ZbWKwL" target="_blank" aria-label="Facebook"><i data-lucide="facebook" style="color: white;"></i></a>
+                <a href="https://wa.me/5548991140848" target="_blank" aria-label="WhatsApp"><i data-lucide="whatsapp" style="color: white;"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; <span id="current-year"></span> Dr. Fernando Topanotti Tarabay. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const contentSections = document.querySelectorAll('.content-section');
+            const heroButtons = document.querySelectorAll('.hero-section .button');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mainNav = document.getElementById('main-nav');
+            const navUnderline = document.querySelector('.nav-underline');
+
+            function updateUnderline(activeButton) {
+                if (window.innerWidth >= 768 && activeButton) { 
+                    navUnderline.style.opacity = '1';
+                    navUnderline.style.width = `${activeButton.offsetWidth}px`;
+                    navUnderline.style.transform = `translateX(${activeButton.offsetLeft}px)`;
+                } else {
+                    navUnderline.style.opacity = '0';
+                }
+            }
+
+            function setActiveTab(tabId, skipScroll = false) { 
+                // Fecha o menu mobile se estiver aberto
+                if (mainNav.classList.contains('open')) {
+                    mainNav.classList.remove('open');
+                    mobileMenuButton.querySelector('i').setAttribute('data-lucide', 'menu'); 
+                    lucide.createIcons(); // Recria os ícones para mudar de 'x' para 'menu'
+                }
+
+                navButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                const activeButton = document.querySelector(`.nav-button[data-tab="${tabId}"]`);
+                if (activeButton) {
+                    activeButton.classList.add('active');
+                    updateUnderline(activeButton);
+                }
+
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                const activeSection = document.getElementById(`${tabId}-section`);
+                if (activeSection) {
+                    activeSection.classList.add('active');
+                    if (!skipScroll) { 
+                        // Verifica se é uma tela mobile (largura menor que 768px)
+                        if (window.innerWidth < 768) {
+                            // Para mobile, rola para o topo da seção
+                            activeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        } else {
+                            // Para desktop, ajusta a rolagem para evitar que o cabeçalho cubra o conteúdo
+                            const headerOffset = document.querySelector('header').offsetHeight;
+                            const elementPosition = activeSection.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
+                    }
+                    activeSection.querySelectorAll('.fade-in-up').forEach(el => {
+                        el.classList.remove('fade-in-up');
+                        void el.offsetWidth; // Trigger reflow
+                        el.classList.add('fade-in-up');
+                    });
+                }
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const tabId = event.target.dataset.tab;
+                    setActiveTab(tabId);
+                });
+            });
+            heroButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const tabId = event.target.dataset.tab || event.target.closest('button').dataset.tab;
+                    if (tabId) {
+                        setActiveTab(tabId);
+                    }
+                });
+            });
+            mobileMenuButton.addEventListener('click', () => {
+                mainNav.classList.toggle('open');
+                const icon = mobileMenuButton.querySelector('i');
+                if (mainNav.classList.contains('open')) {
+                    icon.setAttribute('data-lucide', 'x'); // Ícone de 'x' quando o menu está aberto
+                } else {
+                    icon.setAttribute('data-lucide', 'menu'); // Ícone de 'menu' quando o menu está fechado
+                }
+                lucide.createIcons(); // Recria os ícones do Lucide para que a mudança seja visível
+            });
+            
+            window.addEventListener('resize', () => {
+                const activeButton = document.querySelector('.nav-button.active');
+                updateUnderline(activeButton);
+            });
+
+            // Oculta o underline se não houver um botão ativo inicialmente ou se a tela for mobile
+            if (window.innerWidth < 768) {
+                navUnderline.style.opacity = '0';
+            }
+
+            // Ativa a primeira aba 'Sobre Mim' ao carregar a página
+            setActiveTab('about', true); 
+            
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+        });
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>
