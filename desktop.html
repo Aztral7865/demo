@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Importação da fonte Poppins */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         :root {
             --primary-blue: #2563eb;
@@ -26,7 +25,6 @@
             --whatsapp-dark-green: #1da851;
         }
 
-        /* Base styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -148,8 +146,7 @@
             height: 3px;
             background-color: var(--primary-blue);
             border-radius: 2px;
-            animation: expandUnderline 0.3s forwards;
-            /* No mobile, essa linha será o indicador ativo para cada botão */
+            animation: expandUnderline 0.3s forwards; /* No mobile, essa linha será o indicador ativo para cada botão */
         }
 
         .nav-underline {
@@ -648,12 +645,12 @@
             .hero-content .description { font-size: 1rem; }
             .hero-buttons { 
                 flex-direction: column; /* Botões empilhados */
-                align-items: center; 
+                align-items: center;
                 gap: 0.75rem; 
             }
             .button { 
                 width: 90%; /* Botões com largura maior */
-                max-width: 300px; 
+                max-width: 300px;
                 padding: 0.65rem 1.25rem; 
                 font-size: 0.95rem; 
             }
@@ -754,7 +751,7 @@
                 display: none; /* Esconde o botão de hambúrguer no desktop */
             }
             .hero-section { 
-                flex-direction: row; 
+                flex-direction: row;
                 text-align: left; 
             }
             .md\:w-1\/3 { width: 33.333333%; }
@@ -777,7 +774,7 @@
             .contact-socials h4 { text-align: left; }
             .contact-socials .social-icons { justify-content: flex-start; }
 
-            /* Estilos específicos para a imagem e texto da seção "Sobre Mim" no desktop */
+            /* Estilos específicos para a imagem e o texto da seção "Sobre Mim" no desktop */
             #about-section .grid {
                 align-items: flex-start;
             }
@@ -820,6 +817,72 @@
         #specialties-section .grid {
             gap: 2rem;
         }
+
+        /* Estilos do Carrossel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px var(--shadow-medium);
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    height: 100%; /* Adicionado para manter proporção */
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%; /* Garante que a imagem ocupe todo o espaço */
+    flex: 0 0 100%; /* Impede que mais de uma imagem apareça */
+    object-fit: cover; /* Garante que a imagem preencha o espaço mantendo proporção */
+    border-radius: 0.75rem;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    z-index: 10;
+    color: var(--primary-blue);
+}
+
+.carousel-arrow:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-arrow i {
+    width: 24px;
+    height: 24px;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.carousel-container:hover .carousel-arrow {
+    opacity: 1;
+}
     </style>
 </head>
 <body>
@@ -859,26 +922,37 @@
                     <a href="https://wa.me/+5548991140848" target="_blank" class="button whatsapp-button no-underline">
                         <i data-lucide="whatsapp" style="margin-right: 0.5rem;"></i> WhatsApp
                     </a>
-                     <button class="button primary-button" data-tab="contact">
+                    <button class="button primary-button" data-tab="contact">
                         <i data-lucide="calendar" style="margin-right: 0.5rem;"></i> Agendar Consulta
                     </button>
-                    <button class="button outline-button" data-tab="specialties">
-                        Minhas Especialidades
-                    </button>
+                    <button class="button outline-button" data-tab="specialties"> Minhas Especialidades </button>
                 </div>
             </div>
         </section>
-        
+
         <section id="about-section" class="content-section container">
             <h3>Sobre Mim</h3>
             <div class="grid md:grid-cols-2 gap-8 items-center">
                 <div class="about-text-content fade-in-up delay-1">
-                    <p>Formado em Medicina pela Universidade do Extremo Sul Catarinense (UNESC), dedico-me a oferecer o melhor cuidado aos meus pacientes, utilizando as mais recentes técnicas e conhecimentos na área. Minha paixão é ajudar pessoas a terem uma vida mais saudável e plena.</p>
-                    <p>Minha abordagem é centrada no paciente, buscando entender suas necessidades individuais e oferecer um tratamento humanizado e personalizado. Acredito que a comunicação clara e a confiança são fundamentais para o sucesso do tratamento.</p>
+                    <p>Formado em Medicina pela Universidade do Extremo Sul Catarinense (UNESC), dedico-me a oferecer o melhor cuidado aos meus pacientes, utilizando as mais recentes técnicas e conhecimentos na área. Minha paixão é ajudar pessoas a terem uma vida mais saudável e plena.
+                    <br><br>Minha abordagem é centrada no paciente, buscando entender suas necessidades individuais e oferecer um tratamento humanizado e personalizado. Acredito que a comunicação clara e a confiança são fundamentais para o sucesso do tratamento.</p>
                 </div>
                 <div class="about-image-container fade-in-up delay-2">
-                    <img src="ftFernando.jpg" alt="Dr. Fernando Tarabay" class="about-image">
-                </div>
+    <div class="carousel-container">
+        <div class="carousel-slides">
+            <!-- ADICIONE AQUI SUAS 3 IMAGENS (substitua os src pelas suas imagens) -->
+            <img src="ftFernando.jpg" alt="Dr. Fernando Topanotti" class="carousel-image about-image">
+            <img src="ftFernando2.png" alt="Dr. Fernando Topanotti" class="carousel-image about-image">
+            <img src="ftFernando3.png" alt="Dr. Fernando Topanotti" class="carousel-image about-image">
+        </div>
+        <button class="carousel-arrow prev" aria-label="Imagem anterior">
+            <i data-lucide="chevron-left"></i>
+        </button>
+        <button class="carousel-arrow next" aria-label="Próxima imagem">
+            <i data-lucide="chevron-right"></i>
+        </button>
+    </div>
+</div>
             </div>
         </section>
 
@@ -981,13 +1055,27 @@
                     <div class="card-content"><p class="card-description">Prevenção, diagnóstico precoce e reabilitação pós-AVC para minimizar sequelas.</p></div>
                 </div>
                 <div class="card specialty-card fade-in-up delay-4">
-                    <div class="card-header"><i data-lucide="clipboard-list" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Distúrbios do<br>Sono</h4></div>
+                    <div class="card-header"><i data-lucide="moon" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Distúrbios do<br>Sono</h4></div>
                     <div class="card-content"><p class="card-description">Avaliação e tratamento de insônia, apneia do sono e outros transtornos que afetam o descanso.</p></div>
                 </div>
                 <div class="card specialty-card fade-in-up delay-5">
                     <div class="card-header"><i data-lucide="speech" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Epilepsia e Convulsões</h4></div>
                     <div class="card-content"><p class="card-description">Diagnóstico preciso e plano de tratamento para controle de crises epilépticas.</p></div>
                 </div>
+                
+                <div class="card specialty-card fade-in-up delay-6">
+                    <div class="card-header"><i data-lucide="clipboard-list" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Neuropatias Periféricas</h4></div>
+                    <div class="card-content"><p class="card-description">Diagnóstico e tratamento de condições que afetam os nervos fora do cérebro e da medula espinhal.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-7">
+                    <div class="card-header"><i data-lucide="scan" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Esclerose Múltipla<br><br></h4></div>
+                    <div class="card-content"><p class="card-description">Manejo e acompanhamento de pacientes com Esclerose Múltipla, buscando estabilizar a doença.</p></div>
+                </div>
+                <div class="card specialty-card fade-in-up delay-8">
+                    <div class="card-header"><i data-lucide="droplet" class="text-primary-blue" style="width: 3rem; height: 3rem;"></i><h4 class="card-title">Toxina Botulínica<br>Terapêutica</h4></div>
+                    <div class="card-content"><p class="card-description">Uso da toxina botulínica para tratamento de enxaqueca crônica, espasticidade e outras condições.</p></div>
+                </div>
+
             </div>
         </section>
 
@@ -996,7 +1084,6 @@
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="fade-in-up delay-1">
                     <p>Para agendamentos, dúvidas ou mais informações, pode preencher o formulário ou utilizar um dos nossos contatos diretos abaixo.</p>
-                    
                     <div class="contact-info-wrapper">
                         <div class="contact-item">
                             <div class="icon-circle"><i data-lucide="map-pin"></i></div>
@@ -1020,7 +1107,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="contact-socials">
                         <h4>Siga-me nas redes</h4>
                         <div class="social-icons flex space-x-6">
@@ -1030,7 +1116,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="fade-in-up delay-2">
                     <form action="#" method="POST" class="bg-white p-6 rounded-lg shadow-medium">
                         <div class="form-group">
@@ -1042,151 +1127,213 @@
                             <input type="email" id="email" name="email" class="input-field" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Telefone:</label>
+                            <label for="phone">Telefone (opcional):</label>
                             <input type="tel" id="phone" name="phone" class="input-field">
                         </div>
                         <div class="form-group">
                             <label for="message">Mensagem:</label>
-                            <textarea id="message" name="message" class="input-field" rows="4" required></textarea>
+                            <textarea id="message" name="message" class="input-field" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="button primary-button w-full">Enviar Mensagem</button>
                     </form>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
         <div class="container flex-container">
             <div class="logo-container">
                 <i data-lucide="brain" class="logo-animation" style="color: white;"></i>
-                <span style="color: white;">Dr. Fernando Tarabay</span>
+                <span>Dr. Fernando Topanotti</span>
             </div>
-
-            <div class="social-icons flex space-x-3 mt-4 md:mt-0">
+            <div class="social-icons flex space-x-3 mt-4">
                 <a href="https://www.instagram.com/fernandotopanotti.neuro" target="_blank" aria-label="Instagram"><i data-lucide="instagram" style="color: white;"></i></a>
                 <a href="https://www.facebook.com/fernando.topanottitarabay?mibextid=ZbWKwL" target="_blank" aria-label="Facebook"><i data-lucide="facebook" style="color: white;"></i></a>
                 <a href="https://wa.me/5548991140848" target="_blank" aria-label="WhatsApp"><i data-lucide="whatsapp" style="color: white;"></i></a>
             </div>
         </div>
-        <div class="copyright">
-            &copy; <span id="current-year"></span> Dr. Fernando Topanotti Tarabay. Todos os direitos reservados.
+        <div class="container copyright">
+            <p>&copy; <span id="current-year"></span> Dr. Fernando Topanotti Tarabay. Todos os direitos reservados.</p>
         </div>
     </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const navButtons = document.querySelectorAll('.nav-button');
+    const contentSections = document.querySelectorAll('.content-section');
+    const navUnderline = document.querySelector('.nav-underline');
+    const mainNav = document.getElementById('main-nav');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navButtons = document.querySelectorAll('.nav-button');
-            const contentSections = document.querySelectorAll('.content-section');
-            const heroButtons = document.querySelectorAll('.hero-section .button');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mainNav = document.getElementById('main-nav');
-            const navUnderline = document.querySelector('.nav-underline');
+    const updateUnderline = (activeButton) => {
+        if (activeButton && window.innerWidth >= 768) {
+            navUnderline.style.width = `${activeButton.offsetWidth}px`;
+            navUnderline.style.left = `${activeButton.offsetLeft}px`;
+            navUnderline.style.opacity = '1';
+        } else {
+            navUnderline.style.opacity = '0';
+        }
+    };
 
-            function updateUnderline(activeButton) {
-                if (window.innerWidth >= 768 && activeButton) { 
-                    navUnderline.style.opacity = '1';
-                    navUnderline.style.width = `${activeButton.offsetWidth}px`;
-                    navUnderline.style.transform = `translateX(${activeButton.offsetLeft}px)`;
-                } else {
-                    navUnderline.style.opacity = '0';
-                }
-            }
-
-            function setActiveTab(tabId, skipScroll = false) { 
-                // Fecha o menu mobile se estiver aberto
-                if (mainNav.classList.contains('open')) {
-                    mainNav.classList.remove('open');
-                    mobileMenuButton.querySelector('i').setAttribute('data-lucide', 'menu'); 
-                    lucide.createIcons(); // Recria os ícones para mudar de 'x' para 'menu'
-                }
-
-                navButtons.forEach(button => {
-                    button.classList.remove('active');
-                });
-                const activeButton = document.querySelector(`.nav-button[data-tab="${tabId}"]`);
-                if (activeButton) {
-                    activeButton.classList.add('active');
-                    updateUnderline(activeButton);
-                }
-
-                contentSections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                const activeSection = document.getElementById(`${tabId}-section`);
-                if (activeSection) {
-                    activeSection.classList.add('active');
-                    if (!skipScroll) { 
-                        // Verifica se é uma tela mobile (largura menor que 768px)
-                        if (window.innerWidth < 768) {
-                            // Para mobile, rola para o topo da seção
-                            activeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        } else {
-                            // Para desktop, ajusta a rolagem para evitar que o cabeçalho cubra o conteúdo
-                            const headerOffset = document.querySelector('header').offsetHeight;
-                            const elementPosition = activeSection.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
-                        }
-                    }
-                    activeSection.querySelectorAll('.fade-in-up').forEach(el => {
-                        el.classList.remove('fade-in-up');
-                        void el.offsetWidth; // Trigger reflow
-                        el.classList.add('fade-in-up');
-                    });
-                }
-            }
-
-            navButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const tabId = event.target.dataset.tab;
-                    setActiveTab(tabId);
-                });
-            });
-            heroButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const tabId = event.target.dataset.tab || event.target.closest('button').dataset.tab;
-                    if (tabId) {
-                        setActiveTab(tabId);
-                    }
-                });
-            });
-            mobileMenuButton.addEventListener('click', () => {
-                mainNav.classList.toggle('open');
-                const icon = mobileMenuButton.querySelector('i');
-                if (mainNav.classList.contains('open')) {
-                    icon.setAttribute('data-lucide', 'x'); // Ícone de 'x' quando o menu está aberto
-                } else {
-                    icon.setAttribute('data-lucide', 'menu'); // Ícone de 'menu' quando o menu está fechado
-                }
-                lucide.createIcons(); // Recria os ícones do Lucide para que a mudança seja visível
-            });
-            
-            window.addEventListener('resize', () => {
-                const activeButton = document.querySelector('.nav-button.active');
-                updateUnderline(activeButton);
-            });
-
-            // Oculta o underline se não houver um botão ativo inicialmente ou se a tela for mobile
-            if (window.innerWidth < 768) {
-                navUnderline.style.opacity = '0';
-            }
-
-            // Ativa a primeira aba 'Sobre Mim' ao carregar a página
-            setActiveTab('about', true); 
-            
-            const currentYearSpan = document.getElementById('current-year');
-            if (currentYearSpan) {
-                currentYearSpan.textContent = new Date().getFullYear();
+    const setActiveTab = (tabId, initialLoad = false) => {
+        navButtons.forEach(button => {
+            if (button.dataset.tab === tabId) {
+                button.classList.add('active');
+                updateUnderline(button);
+            } else {
+                button.classList.remove('active');
             }
         });
 
+        contentSections.forEach(section => {
+            if (section.id === `${tabId}-section`) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+
+        if (!initialLoad && mainNav.classList.contains('open')) {
+            mainNav.classList.remove('open');
+            mobileMenuButton.querySelector('i').setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        }
+    };
+
+    // Código do Carrossel
+    const carousel = () => {
+    const carouselContainer = document.querySelector('.carousel-container');
+    const slides = document.querySelector('.carousel-slides');
+    const images = document.querySelectorAll('.carousel-image');
+    const prevBtn = document.querySelector('.carousel-arrow.prev');
+    const nextBtn = document.querySelector('.carousel-arrow.next');
+    
+    let currentIndex = 0;
+    const totalImages = images.length;
+    let intervalId;
+    
+    // Clona o primeiro e último elemento para criar um loop infinito suave
+    const firstClone = images[0].cloneNode(true);
+    const lastClone = images[totalImages - 1].cloneNode(true);
+    
+    slides.appendChild(firstClone);
+    slides.insertBefore(lastClone, images[0]);
+    
+    // Ajusta a posição inicial
+    slides.style.transform = `translateX(-100%)`;
+    
+    const updateCarousel = (direction) => {
+        slides.style.transition = 'transform 0.5s ease-in-out';
+        
+        if (direction === 'next') {
+            currentIndex++;
+            slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+        } else if (direction === 'prev') {
+            currentIndex--;
+            slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+        }
+        
+        // Verifica se chegou ao final (clone) e faz a transição sem animação
+        if (currentIndex >= totalImages) {
+            setTimeout(() => {
+                slides.style.transition = 'none';
+                currentIndex = 0;
+                slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+            }, 500);
+        } else if (currentIndex < 0) {
+            setTimeout(() => {
+                slides.style.transition = 'none';
+                currentIndex = totalImages - 1;
+                slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+            }, 500);
+        }
+    };
+    
+    const nextSlide = () => {
+        updateCarousel('next');
+        resetInterval();
+    };
+    
+    const prevSlide = () => {
+        updateCarousel('prev');
+        resetInterval();
+    };
+    
+    const startInterval = () => {
+        intervalId = setInterval(nextSlide, 6000);
+    };
+    
+    const resetInterval = () => {
+        clearInterval(intervalId);
+        startInterval();
+    };
+    
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Iniciar o carrossel automático
+    startInterval();
+    
+    // Pausar quando o mouse estiver sobre o carrossel
+    carouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(intervalId);
+    });
+    
+    // Retomar quando o mouse sair
+    carouselContainer.addEventListener('mouseleave', () => {
+        startInterval();
+    });
+    
+    // Resetar a posição se o usuário tentar navegar muito rápido
+    slides.addEventListener('transitionend', () => {
+        if (currentIndex >= totalImages) {
+            slides.style.transition = 'none';
+            currentIndex = 0;
+            slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+        } else if (currentIndex < 0) {
+            slides.style.transition = 'none';
+            currentIndex = totalImages - 1;
+            slides.style.transform = `translateX(-${(currentIndex + 1) * 100}%)`;
+        }
+    });
+};
+    navButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            setActiveTab(button.dataset.tab);
+        });
+    });
+
+    mobileMenuButton.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+        const icon = mobileMenuButton.querySelector('i');
+        if (mainNav.classList.contains('open')) {
+            icon.setAttribute('data-lucide', 'x');
+        } else {
+            icon.setAttribute('data-lucide', 'menu');
+        }
         lucide.createIcons();
-    </script>
+    });
+    
+    window.addEventListener('resize', () => {
+        const activeButton = document.querySelector('.nav-button.active');
+        updateUnderline(activeButton);
+    });
+
+    if (window.innerWidth < 768) {
+        navUnderline.style.opacity = '0';
+    }
+
+    setActiveTab('about', true);
+    
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+    
+    // Iniciar o carrossel
+    carousel();
+    lucide.createIcons();
+});
+</script>
 </body>
 </html>
