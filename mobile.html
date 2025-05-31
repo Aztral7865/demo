@@ -802,79 +802,44 @@
             /* Adiciona um pouco de espaço acima do botão, se desejar */
         }
 
+        /* Carrossel de Imagens - Novas Regras para Animação de Deslizamento */
+.about-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Mantém a largura máxima para o carrossel */
+    height: 300px; /* Altura fixa para manter o mesmo tamanho visual que as imagens tinham */
+    overflow: hidden; /* Isso esconde as imagens que estão fora da vista */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-white-subtle);
+    /* display: flex; /* Removido para que o inner controle o flex */
+    /* justify-content: center; */
+    /* align-items: center; */
+    margin: 0 auto; /* Centraliza o carrossel */
+}
+
+.carousel-inner {
+    display: flex; /* Faz com que as imagens fiquem lado a lado */
+    width: 100%; /* Será ajustado via JS para caber todas as imagens */
+    height: 100%;
+    transition: transform 0.5s ease-in-out; /* Transição para o efeito de deslizamento */
+}
+
+.carousel-image {
+    min-width: 100%; /* Cada imagem ocupa 100% da largura do seu contêiner (carousel-inner) */
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+    flex-shrink: 0; /* Impede que as imagens encolham */
+    user-select: none; /* Evita seleção de texto na imagem ao arrastar */
+    -webkit-user-drag: none; /* Evita arrastar a imagem em navegadores baseados em WebKit */
+}
+
         .about-carousel {
-    position: relative;
-    width: 80%;
-    max-width: 250px;
-    height: auto;
-    /* Centraliza o carrossel dentro do about-image-container */
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.about-carousel .carousel-image {
-    position: absolute;
-    top: 0;
-    left: 50%; /* Adicionado/Modificado: Posiciona o início da imagem no centro */
-    transform: translateX(-50%); /* Adicionado: Move a imagem 50% da sua própria largura para a esquerda */
-    width: 100%; /* Garante que a imagem ocupe a largura total do carrossel */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 8px var(--shadow-medium);
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.about-carousel .carousel-image.active {
-    opacity: 1;
-    position: relative;
-}
-
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-.carousel-control:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.prev-button {
-    left: -1.5rem; /* Ajuste a posição para fora da imagem */
-}
-
-.next-button {
-    right: -1.5rem; /* Ajuste a posição para fora da imagem */
-}
-
-.carousel-control i {
-    width: 1.5rem;
-    height: 1.5rem;
-}
-
-/* Media query para telas menores que 480px, ajustando a posição dos botões para não saírem da tela */
-@media (max-width: 480px) {
-    .prev-button {
-        left: 0.5rem;
+        flex-shrink: 0; /* Impede que o carrossel encolha */
+        width: 300px; /* Mantém a largura fixa em telas maiores */
+        height: 300px; /* Mantém a altura fixa */
+        margin: 0; /* Remove margem automática para não interferir com flex */
     }
-
-    .next-button {
-        right: 0.5rem;
-    }
-}
-
 
     </style>
 </head>
@@ -935,15 +900,15 @@
                 </div>
                 <div class="about-image-container fade-in-up delay-2">
     <div class="about-carousel">
-    <img src="ftFernando.jpg" class="about-image carousel-image active" alt="Dr. Fernando Tarabay">
-    <img src="ftFernando2.png" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
-    <img src="ftFernando3.png" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
-    <button class="carousel-control prev-button">
-        <i data-lucide="chevron-left"></i>
-    </button>
-    <button class="carousel-control next-button">
-        <i data-lucide="chevron-right"></i>
-    </button>
+    <div class="carousel-inner">
+        <img src="ftFernando3.png" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
+
+        <img src="ftFernando.jpg" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
+        <img src="ftFernando2.png" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
+        <img src="ftFernando3.png" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
+
+        <img src="ftFernando.jpg" class="about-image carousel-image" alt="Dr. Fernando Tarabay">
+    </div>
 </div>
 </div>
 
@@ -1146,115 +1111,52 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const mainNav = document.getElementById('main-nav');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
         const navButtons = document.querySelectorAll('.nav-button');
         const contentSections = document.querySelectorAll('.content-section');
-        const heroButtons = document.querySelectorAll('.hero-section .button');
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mainNav = document.getElementById('main-nav');
-        const carouselImages = document.querySelectorAll('.about-carousel .carousel-image');
-        const prevButton = document.querySelector('.prev-button');
-        const nextButton = document.querySelector('.next-button');
-        let currentIndex = 0;
-        let intervalId; // Variável para armazenar o ID do intervalo do carrossel
+        const heroButtons = document.querySelectorAll('.hero-buttons .button');
 
-        function showImage(index) {
-            carouselImages.forEach((img, i) => {
-                if (i === index) {
-                    img.classList.add('active');
+        // Função para ativar a aba e rolar suavemente [cite: 467]
+        const setActiveTab = (tabId, isInitialLoad = false) => {
+            navButtons.forEach(button => {
+                if (button.dataset.tab === tabId) {
+                    button.classList.add('active');
                 } else {
-                    img.classList.remove('active');
+                    button.classList.remove('active');
                 }
             });
-        }
 
-        function showNextImage() {
-            currentIndex = (currentIndex + 1) % carouselImages.length;
-            showImage(currentIndex);
-        }
-
-        function showPrevImage() {
-            currentIndex = (currentIndex - 1 + carouselImages.length) % carouselImages.length;
-            showImage(currentIndex);
-        }
-
-        function startCarousel() {
-            // Limpa qualquer intervalo existente antes de iniciar um novo
-            if (intervalId) {
-                clearInterval(intervalId);
-            }
-            intervalId = setInterval(showNextImage, 6000);
-        }
-
-        // Event Listeners para os botões de navegação manual
-        if (prevButton) {
-            prevButton.addEventListener('click', () => {
-                showPrevImage();
-                startCarousel(); // Reinicia o carrossel após interação manual
+            contentSections.forEach(section => {
+                if (section.id === `${tabId}-section`) {
+                    section.classList.add('active');
+                    if (!isInitialLoad) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    section.classList.remove('active');
+                }
             });
-        }
 
-        if (nextButton) {
-            nextButton.addEventListener('click', () => {
-                showNextImage();
-                startCarousel(); // Reinicia o carrossel após interação manual
-            });
-        }
-
-        // Inicializa a primeira imagem e o carrossel automático
-        if (carouselImages.length > 0) {
-            showImage(currentIndex);
-            startCarousel();
-        }
-
-        function setActiveTab(tabId, skipScroll = false) {
             // Fecha o menu mobile se estiver aberto
             if (mainNav.classList.contains('open')) {
                 mainNav.classList.remove('open');
-                // Verifica se o mobileMenuButton existe e se tem um ícone antes de tentar manipular
-                const icon = mobileMenuButton ? mobileMenuButton.querySelector('i') : null;
+                const icon = mobileMenuButton.querySelector('i');
                 if (icon) {
-                    icon.setAttribute('data-lucide', 'menu');
-                    lucide.createIcons(); // Recria os ícones para mudar de 'x' para 'menu'
+                    icon.setAttribute('data-lucide', 'menu'); // Ícone de 'menu' quando o menu está fechado
+                    lucide.createIcons();
                 }
             }
+        };
 
-            navButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            const activeButton = document.querySelector(`.nav-button[data-tab="${tabId}"]`);
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-
-            contentSections.forEach(section => {
-                section.classList.remove('active');
-            });
-            const activeSection = document.getElementById(`${tabId}-section`);
-            if (activeSection) {
-                activeSection.classList.add('active');
-                if (!skipScroll) {
-                    // Rola para o topo da seção no mobile
-                    // Adicionado um pequeno atraso para garantir que a seção esteja visível antes de rolar
-                    setTimeout(() => {
-                        activeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
-                }
-                activeSection.querySelectorAll('.fade-in-up').forEach(el => {
-                    el.classList.remove('fade-in-up');
-                    void el.offsetWidth; // Trigger reflow
-                    el.classList.add('fade-in-up');
-                });
-            }
-        }
-
-        // Adiciona evento de clique aos botões do menu principal para ativar as abas
+        // Event listeners para os botões de navegação
         navButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                const tabId = event.target.dataset.tab;
-                setActiveTab(tabId);
+                setActiveTab(event.target.dataset.tab);
             });
         });
-        // Mantém os eventos para os botões da seção hero
+
+        // Event listeners para os botões da seção hero [cite: 468, 469]
         heroButtons.forEach(button => {
             button.addEventListener('click', (event) => {
                 const tabId = event.target.dataset.tab || event.target.closest('button').dataset.tab;
@@ -1263,12 +1165,13 @@
                 }
             });
         });
-        // Correção do erro no menu mobile: garantir que o mobileMenuButton e seu ícone existam antes de manipular
-        if (mobileMenuButton) { 
+
+        // Correção do erro no menu mobile: garantir que o mobileMenuButton e seu ícone existam antes de manipular [cite: 467]
+        if (mobileMenuButton) {
             mobileMenuButton.addEventListener('click', () => {
                 mainNav.classList.toggle('open');
                 const icon = mobileMenuButton.querySelector('i');
-                if (icon) { 
+                if (icon) {
                     if (mainNav.classList.contains('open')) {
                         icon.setAttribute('data-lucide', 'x'); // Ícone de 'x' quando o menu está aberto
                     } else {
@@ -1279,7 +1182,101 @@
             });
         }
 
-        // Ativa a primeira aba 'Sobre Mim' ao carregar a página
+        // Lógica do Carrossel de Imagens (com Swipe e Animação de Deslizamento Infinito)
+        const carousel = document.querySelector('.about-carousel');
+        const carouselInner = document.querySelector('.about-carousel .carousel-inner');
+        const carouselImages = document.querySelectorAll('.about-carousel .carousel-image');
+        
+        // O número real de imagens originais (excluindo as cópias para loop)
+        const totalRealImages = carouselImages.length - 2; // -2 por causa das cópias no início e fim
+        
+        // currentImageIndex agora representa o índice DA IMAGEM REAL.
+        // Começamos na imagem real no índice 1 do DOM (que é a primeira imagem original)
+        let currentImageIndex = 1; // Começa na primeira imagem real (índice 1 no DOM)
+        
+        let autoSlideInterval;
+        let startX = 0;
+        let endX = 0;
+        const minSwipeDistance = 50; // Distância mínima para considerar um swipe
+
+        function showSlide(index, smoothTransition = true) {
+            // Desabilita a transição para saltos instantâneos
+            if (!smoothTransition) {
+                carouselInner.style.transition = 'none';
+            } else {
+                carouselInner.style.transition = 'transform 0.5s ease-in-out';
+            }
+
+            // O `index` passado aqui é o índice da imagem no DOM, incluindo as cópias.
+            // Para a lógica de loop, ajustamos `currentImageIndex` para ser o índice real + 1 (devido à cópia inicial).
+            const targetIndexInDOM = index;
+            const offset = -targetIndexInDOM * 100;
+            carouselInner.style.transform = `translateX(${offset}%)`;
+
+            // Atualiza currentImageIndex para refletir o índice do DOM
+            currentImageIndex = targetIndexInDOM;
+
+            // Lógica para loop "infinito" - salto instantâneo
+            if (currentImageIndex === carouselImages.length - 1) { // Se chegou na CÓPIA da primeira imagem
+                setTimeout(() => {
+                    // Salta para a primeira imagem REAL sem transição
+                    showSlide(1, false); // O índice 1 no DOM é a primeira imagem real
+                }, 500); // Tempo igual à transição CSS
+            } else if (currentImageIndex === 0) { // Se chegou na CÓPIA da última imagem (indo para trás)
+                setTimeout(() => {
+                    // Salta para a última imagem REAL sem transição
+                    showSlide(totalRealImages, false); // O índice totalRealImages no DOM é a última imagem real
+                }, 500); // Tempo igual à transição CSS
+            }
+        }
+
+        function nextSlide() {
+            showSlide(currentImageIndex + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentImageIndex - 1);
+        }
+
+        function startAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+            // A cada 6 segundos, avança para a próxima imagem.
+            // A lógica de loop infinito é tratada por showSlide.
+            autoSlideInterval = setInterval(nextSlide, 6000); 
+        }
+
+        // Eventos de toque para swipe
+        carousel.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            clearInterval(autoSlideInterval); // Para o auto-slide ao iniciar o toque
+        });
+
+        carousel.addEventListener('touchmove', (e) => {
+            endX = e.touches[0].clientX;
+        });
+
+        carousel.addEventListener('touchend', () => {
+            const diffX = endX - startX;
+
+            if (diffX > minSwipeDistance) { // Swipe para a direita (anterior)
+                prevSlide();
+            } else if (diffX < -minSwipeDistance) { // Swipe para a esquerda (próximo)
+                nextSlide();
+            }
+
+            startX = 0; // Resetar
+            endX = 0; // Resetar
+            startAutoSlide(); // Reinicia o auto-slide após o swipe
+        });
+        
+        // Inicia o carrossel automático e define a posição inicial
+        // Começa mostrando a primeira imagem real (que está no índice 1 do DOM)
+        showSlide(currentImageIndex, false); // Inicia sem transição para posicionar corretamente
+        startAutoSlide();
+
+        // Ativa a primeira aba 'Sobre Mim' ao carregar a página [cite: 467]
         setActiveTab('about', true);
         const currentYearSpan = document.getElementById('current-year');
         if (currentYearSpan) {
