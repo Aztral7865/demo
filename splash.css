@@ -1,0 +1,173 @@
+/* splash.css */
+
+/* Importação da fonte Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Variáveis CSS - Verifique se já existem no seu CSS principal e adapte */
+:root {
+    --primary-blue: #2563eb;
+    --dark-blue: #1d4ed8;
+    --light-blue: #eff6ff;
+    --background-white-subtle: #fbfbfc; /* Um branco muito suave, quase imperceptível */
+    --gray-light: #f9fafb;
+    --gray-medium: #e5e7eb;
+    --gray-dark: #1f2937;
+    --text-gray: #4b5563;
+    --accent-blue: #60a5fa;
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Sombra mais suave */
+    --shadow-medium: rgba(0, 0, 0, 0.1); /* Sombra média */
+    --shadow-dark: rgba(0, 0, 0, 0.2); /* Sombra mais escura */
+    --gradient-blue: linear-gradient(to right, #2563eb, #1d4ed8);
+}
+
+/* Estilos globais (apenas se não estiverem no seu CSS principal ou para sobrescrever) */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--text-gray);
+    background-color: var(--background-white-subtle);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-blue);
+    transform: translateY(-2px);
+}
+
+/* Estilos da Splash Screen */
+#splash-screen {
+    background-color: white; /* ou a cor de fundo que você quiser para a splash */
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: fixed; /* Essencial para que fique por cima do conteúdo */
+    top: 0;
+    left: 0;
+    z-index: 9999; /* Garante que fique acima de tudo */
+    transition: opacity 0.6s ease-out; /* Transição para o sumiço suave */
+}
+
+/* Estilos específicos para a hero section dentro da splash */
+#splash-screen #hero {
+    padding: 0; /* A splash screen já ocupa a tela toda, não precisa de padding extra na hero */
+    background-color: transparent; /* A cor de fundo é da splash-screen em si */
+    display: flex; /* Para centralizar o conteúdo dentro da hero da splash */
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Ocupa a largura total da splash */
+}
+
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    max-width: 800px; /* Reduzi um pouco para o conteúdo do texto */
+    padding: 0 1rem;
+}
+
+.hero-content {
+    opacity: 0;
+    transform: translateY(100px); /* Começa 100px para baixo */
+    animation: slideInUp 1s ease-out forwards;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: var(--gray-dark);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content h1 strong {
+    color: var(--primary-blue);
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    color: var(--text-gray);
+    margin-bottom: 2rem;
+}
+
+/* Animações Keyframes */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideOutDown {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+}
+
+/* Classes de utilidade para o JavaScript */
+.hidden {
+    display: none !important;
+}
+
+.no-animation {
+    animation: none !important;
+}
+
+/* Estilo para garantir que o conteúdo principal começa oculto */
+#main-site-content {
+    /* Por padrão, este conteúdo começa oculto via JS ou inline style */
+    /* display: none; */ /* Será controlado pelo JS */
+    min-height: 100vh; /* Garante que o conteúdo principal ocupe a altura da tela */
+    width: 100%;
+}
+
+/* Responsividade para a splash screen */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
