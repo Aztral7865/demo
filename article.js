@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     }
-
     // Criar ícones Lucide (importante para esta página também)
     lucide.createIcons();
 });
