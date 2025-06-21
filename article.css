@@ -262,16 +262,36 @@ footer .social-icons a:hover {
     header {
         padding: 1rem 0;
     }
+    header .flex {
+        display: flex;
+        /* Altere para alinhar o logo à esquerda e o botão à direita */
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem; /* Mantenha o padding para as bordas */
+        flex-wrap: nowrap; /* Garante que não quebre linha indevidamente */
+    }
     header h1 {
-        font-size: 1.25rem;
+        font-size: 1.1rem; /* Um pouco menor para caber */
+        white-space: nowrap; /* Tenta manter em uma linha, pode ser cortado se for muito longo */
+        overflow: hidden; /* Esconde o texto que transbordar */
+        text-overflow: ellipsis; /* Adiciona '...' se o texto for cortado */
     }
     .logo-animation {
-        width: 2rem;
-        height: 2rem;
+        width: 1.8rem; /* Ícone um pouco menor */
+        height: 1.8rem;
+    }
+    .logo-container {
+        /* Para o container do logo, permitir que o texto seja flexível */
+        flex-shrink: 1; /* Permite que o container encolha */
+        min-width: 0; /* Garante que possa encolher abaixo do seu conteúdo natural */
     }
     #back-button {
-        padding: 0.6rem 1rem;
-        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem; /* Reduz ainda mais o padding */
+        font-size: 0.75rem; /* Reduz ainda mais o tamanho da fonte */
+        min-width: unset; /* Remove largura mínima */
+        white-space: nowrap; /* Garante que o texto 'Voltar' não quebre */
+        /* Adicionar ou ajustar margem esquerda se necessário para afastar do logo */
+        margin-left: 0.5rem; /* Um pequeno espaçamento */
     }
     #article-detail-section {
         padding: 2rem 0;
