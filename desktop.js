@@ -288,8 +288,9 @@ document.addEventListener('DOMContentLoaded', () => {
         navUnderline.style.opacity = '0';
     }
 
-    // Inicializa a aba 'about' no carregamento, o que chamará initializeCarousel
-    setActiveTab('about', true);
+    // Inicializa a aba correta no carregamento com base no hash da URL ou padroniza para 'about'
+    const initialTab = window.location.hash ? window.location.hash.substring(1).replace('-section', '') : 'about';
+    setActiveTab(initialTab, true);
 
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
