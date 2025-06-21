@@ -53,11 +53,12 @@ header {
 
 header .flex {
     display: flex;
-    justify-content: flex-start;
-    /* Mantido para alinhar à esquerda */
+    justify-content: space-between;
+    /* ALTERADO: Para empurrar os itens para as extremidades */
     align-items: center;
-    gap: 8rem;
-    /* Mantido o espaçamento */
+    gap: 1rem;
+    /* Pode até ser removido ou definido como 0, pois o space-between já lida com o espaço principal. Deixaremos 1rem por enquanto. */
+    /* flex-wrap: nowrap; (garantido na nav para desktop) */
 }
 
 header h1 {
@@ -74,17 +75,15 @@ header h1 {
     gap: 0.5rem;
 }
 
-.logo-animation {
+.logo-image {
     width: 2.5rem;
     height: 2.5rem;
-    color: var(--primary-blue);
-    animation: pulse-brain 2s infinite ease-in-out;
+    object-fit: contain;
 }
 
 /* Navigation */
 nav {
     display: none;
-    /* Esconde a navegação por padrão no mobile */
 }
 
 nav.open {
@@ -101,7 +100,6 @@ nav.open {
     gap: 0.75rem;
     animation: slideDown 0.3s ease-out forwards;
     border-top: 1px solid var(--gray-medium);
-    /* Adiciona uma linha sutil no topo */
 }
 
 @keyframes slideDown {
@@ -127,7 +125,6 @@ nav.open {
     position: relative;
     transition: all 0.3s ease-in-out;
     width: calc(100% - 2rem);
-    /* Ocupa quase 100% da largura no mobile */
     text-align: center;
     border-radius: 0.5rem;
 }
@@ -154,7 +151,6 @@ nav.open {
     background-color: var(--primary-blue);
     border-radius: 2px;
     animation: expandUnderline 0.3s forwards;
-    /* No mobile, essa linha será o indicador ativo para cada botão */
 }
 
 .nav-underline {
@@ -165,7 +161,6 @@ nav.open {
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
-    /* Escondido por padrão, visível apenas no desktop */
     pointer-events: none;
 }
 
@@ -185,7 +180,6 @@ nav.open {
     cursor: pointer;
     padding: 0.5rem;
     display: block;
-    /* Visível apenas no mobile */
     color: var(--gray-dark);
     transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -199,16 +193,17 @@ nav.open {
 .hero-section {
     display: flex;
     flex-direction: column;
-    /* Coluna no mobile */
     align-items: center;
     gap: 2rem;
-    padding: 3rem 0;
+    padding: 1rem 0;
     text-align: center;
 }
 
 .avatar-container {
-    width: 16rem;
-    height: 16rem;
+    width: 18rem;
+    /* Aumentado de 16rem para 18rem */
+    height: 18rem;
+    /* Aumentado de 16rem para 18rem */
     border-radius: 9999px;
     overflow: hidden;
     border: 6px solid var(--primary-blue);
@@ -216,26 +211,30 @@ nav.open {
     transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.avatar-container:hover {
-    transform: scale(1.08);
-}
-
 .avatar-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
+    /* Adicionado: Garante que o topo da imagem é visível */
     display: block;
+}
+
+.avatar-container:hover {
+    transform: scale(1.08);
 }
 
 .hero-content h2 {
     font-size: 2.5rem;
+    /* Nome do doutor: Maior */
     font-weight: 700;
     color: var(--gray-dark);
     margin-bottom: 1rem;
 }
 
 .hero-content .description {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    /* Descrição: Menor (ajustado de 1.05rem para 1rem) */
     color: var(--text-gray);
     margin: 1.5rem auto;
     max-width: 650px;
@@ -249,7 +248,23 @@ nav.open {
     color: var(--primary-blue);
     font-weight: 500;
     font-size: 1.2rem;
+    /* Mantido para outros usos de text-blue */
 }
+
+/* NOVO ESTILO: Para o texto menor e azul abaixo do nome do Dr. */
+.hero-content .small-text-below-name {
+    font-size: 1.15rem;
+    /* CRM/RQE: Tamanho médio (ajustado de 1em para 1.15rem) */
+    color: var(--primary-blue);
+    /* Agora o texto será azul */
+    margin-top: -0.5rem;
+    /* Puxa um pouco para cima para ficar mais próximo do nome */
+    margin-bottom: 1rem;
+    /* Espaçamento com o parágrafo de baixo */
+    line-height: 1.2;
+    font-weight: 400;
+}
+
 
 .hero-content .text-bold {
     font-weight: 600;
@@ -319,7 +334,7 @@ nav.open {
 /* Content Sections */
 .content-section {
     display: none;
-    padding: 3rem 0;
+    padding: 0.5rem 0;
     animation: fadeIn 0.6s ease-out forwards;
 }
 
@@ -341,7 +356,6 @@ nav.open {
 
 #about-section #hero-section .hero-content {
     padding-left: 8rem;
-    /* Ajuste este valor conforme o desejado */
 }
 
 /* Cards */
@@ -438,25 +452,19 @@ nav.open {
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* Garante que todos os cards na mesma linha tenham a mesma altura */
 }
 
 .specialty-card .card-header {
     padding-bottom: 1.5rem;
     padding-top: 1.5rem;
     height: 10rem;
-    /* Mantenha o valor que funcionou para você */
 
     display: flex;
     flex-direction: column;
 
-    /* **Ajustes para centralizar ícone e título** */
     justify-content: center;
-    /* Alinha o conteúdo verticalmente ao centro */
     align-items: center;
-    /* Alinha o conteúdo horizontalmente ao centro */
     text-align: center;
-    /* Garante que o texto h4 esteja alinhado ao centro */
 }
 
 .specialty-card .card-title {
@@ -465,13 +473,9 @@ nav.open {
 
 .specialty-card .card-content {
     flex-grow: 1;
-    /* Faz com que esta div ocupe todo o espaço vertical disponível */
     display: flex;
-    /* Torna a div um contêiner flexível */
     flex-direction: column;
-    /* Organiza o conteúdo (parágrafo) em coluna */
     justify-content: flex-end;
-    /* Alinha o parágrafo da descrição na parte inferior do card-content */
 }
 
 .specialty-card:hover {
@@ -735,8 +739,13 @@ footer .footer-links a:hover {
     }
 
     header h1 {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--gray-dark);
+        margin: 0;
+        white-space: nowrap;
     }
+
 
     .logo-animation {
         width: 2rem;
@@ -747,7 +756,6 @@ footer .footer-links a:hover {
     .hero-section {
         padding: 2rem 0;
         flex-direction: column;
-        /* Garante que os elementos fiquem empilhados */
         text-align: center;
     }
 
@@ -761,14 +769,12 @@ footer .footer-links a:hover {
 
     .hero-buttons {
         flex-direction: column;
-        /* Botões empilhados */
         align-items: center;
         gap: 0.75rem;
     }
 
     .button {
         width: 90%;
-        /* Botões com largura maior */
         max-width: 300px;
         padding: 0.65rem 1.25rem;
         font-size: 0.95rem;
@@ -785,19 +791,15 @@ footer .footer-links a:hover {
 
     .grid {
         grid-template-columns: 1fr;
-        /* Todas as grids se tornam uma única coluna */
     }
 
     .card {
         margin-bottom: 1.5rem;
     }
 
-    /* Espaçamento entre os cards no mobile */
     .card:last-child {
         margin-bottom: 0;
     }
-
-    /* Remove margem do último card para evitar espaço extra */
 
     /* Forms */
     .form-group label {
@@ -847,46 +849,32 @@ footer .footer-links a:hover {
 
     /* Navegação Mobile - Específicos */
     nav {
-        /* A navegação padrão está 'display: none;' */
         position: absolute;
-        /* Para que o menu caia abaixo do header */
         top: 100%;
-        /* Inicia logo abaixo do header */
         left: 0;
         width: 100%;
         background-color: white;
         box-shadow: 0 4px 6px -1px var(--shadow-medium);
         flex-direction: column;
-        /* Itens empilhados */
         align-items: center;
         gap: 0.75rem;
-        /* Espaçamento entre os botões */
         padding: 1rem 0;
-        /* Preenchimento vertical */
         display: none;
-        /* Escondido por padrão, aberto via JS */
         animation: slideDown 0.3s ease-out forwards;
         border-top: 1px solid var(--gray-medium);
-        /* Borda para separar do header */
     }
 
     nav.open {
-        /* Quando a classe 'open' é adicionada via JS */
         display: flex;
-        /* Mostra o menu */
     }
 
     .nav-button {
         width: calc(100% - 2rem);
-        /* Ocupa a largura total com um padding lateral */
         padding: 0.85rem 1.25rem;
-        /* Um pouco mais de padding para o clique */
         font-size: 1.1rem;
-        /* Um pouco maior para facilitar o toque */
         text-align: center;
     }
 
-    /* Remove o underline do desktop no mobile */
     .nav-underline {
         opacity: 0;
         height: 0;
@@ -897,44 +885,66 @@ footer .footer-links a:hover {
     #about-section .grid {
         flex-direction: column;
         align-items: center;
-        /* Centraliza os itens do grid horizontalmente */
     }
 
     #about-section .about-image-container {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        padding-top: 0.5rem;
         order: -1;
-        /* Coloca a imagem antes do texto no mobile */
         margin-bottom: 1.5rem;
-        /* Espaçamento entre a imagem e o texto */
         width: 100%;
-        /* Ocupa a largura total disponível no contêiner */
         display: flex;
-        /* Permite usar flexbox para centralizar a imagem interna */
         justify-content: center;
-        /* Centraliza a imagem horizontalmente */
+        align-items: center;
+        /* Centraliza verticalmente o image-wrapper */
+    }
+
+    #about-section .image-wrapper {
+        /* Adicionado */
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        /* Limita o tamanho máximo no mobile */
+        padding-bottom: 100%;
+        /* Força proporção 1:1 (quadrado) */
+        overflow: hidden;
+        border-radius: 0.75rem;
+        box-shadow: 0 4px 10px var(--shadow-medium);
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    }
+
+    #about-section .image-wrapper:hover {
+        /* Adicionado */
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px var(--shadow-dark);
     }
 
     #about-section .about-image {
-        width: 80%;
-        /* Ajuste o tamanho da imagem no mobile */
-        max-width: 250px;
-        height: auto;
+        position: absolute;
+        /* Adicionado */
+        top: 0;
+        /* Adicionado */
+        left: 0;
+        /* Adicionado */
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Alterado para cobrir */
+        object-position: top;
+        /* Alterado para focar no topo */
+        border-radius: 0.75rem;
+        /* Movido para image-wrapper, mas mantido aqui por redundância se necessário */
+        box-shadow: none;
+        /* Sombra movida para image-wrapper */
+        display: block;
     }
 
     #about-section .about-text-content {
         text-align: center;
-        /* Centraliza o texto no mobile */
     }
 
     /* AJUSTE: Imagem do artigo em mobile */
     #article-image {
         max-width: 90%;
-        /* Ajusta para 90% da largura do contêiner */
         width: auto;
-        /* Permite que a largura seja flexível */
         height: auto;
     }
 }
@@ -949,14 +959,13 @@ footer .footer-links a:hover {
         box-shadow: none;
         padding: 0;
         align-items: center;
-        /* Remove o gap daqui, pois o gap será tratado no header .flex */
-        /* gap: 2rem; */
+        gap: 0.75rem;
+        flex-wrap: nowrap;
         border-top: none;
     }
 
     .menu-button {
         display: none;
-        /* Esconde o botão de hambúrguer no desktop */
     }
 
     .hero-section {
@@ -1000,15 +1009,21 @@ footer .footer-links a:hover {
         text-align: left;
     }
 
-    /* Underline da navegação para desktop */
+    .nav-button {
+        width: auto;
+        /* Garante que o botão só ocupe o espaço necessário */
+        font-size: 0.95rem;
+        /* Opcional: Considere 0.95rem ou 0.9rem se ainda apertado */
+        padding: 0.75rem 0.8rem;
+        /* Opcional: Reduza o padding horizontal se necessário */
+    }
+
     .nav-button.active::after {
         content: none;
     }
 
-    /* Remove o underline do mobile no desktop */
     .nav-underline {
         opacity: 1;
-        /* Mostra o underline no desktop */
     }
 
     /* Alinhamento da seção de contato no desktop */
@@ -1029,18 +1044,40 @@ footer .footer-links a:hover {
         width: 100%;
         display: flex;
         justify-content: center;
+        align-items: center;
+        /* Centraliza verticalmente o image-wrapper */
         padding-top: 0.5rem;
         order: unset;
-        /* Volta à ordem normal no desktop */
         margin-bottom: 0;
     }
 
-    #about-section .about-image {
-        width: 90%;
-        max-width: 350px;
-        height: auto;
+    #about-section .image-wrapper {
+        position: relative;
+        width: 350px;
+        padding-bottom: 350px;
+        /* Força proporção 1:1 (quadrado) */
+        overflow: hidden;
         border-radius: 0.75rem;
         box-shadow: 0 4px 10px var(--shadow-medium);
+        transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    }
+
+    #about-section .image-wrapper:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 6px 16px var(--shadow-dark);
+    }
+
+    #about-section .about-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 0.75rem;
+        box-shadow: none;
+        display: block;
     }
 
     #about-section .about-text-content {
@@ -1049,7 +1086,6 @@ footer .footer-links a:hover {
         justify-content: space-between;
         height: 100%;
         text-align: left;
-        /* Alinha o texto à esquerda no desktop */
     }
 
     #about-section .about-text-content p {
@@ -1063,13 +1099,10 @@ footer .footer-links a:hover {
     /* AJUSTE: Imagem do artigo em desktop */
     #article-image {
         max-width: 60%;
-        /* Limitado para 60% da largura do contêiner */
         height: auto;
         object-fit: contain;
-        /* Garante que a imagem se ajuste sem cortar */
         margin-left: auto;
         margin-right: auto;
-        /* Centraliza a imagem */
     }
 }
 
@@ -1085,8 +1118,6 @@ footer .footer-links a:hover {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
-    /* Novo para artigos */
 }
 
 /* Espaçamento para a seção de especialidades */
@@ -1094,91 +1125,11 @@ footer .footer-links a:hover {
     gap: 2rem;
 }
 
-/* Estilos do Carrossel */
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 350px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 10px var(--shadow-medium);
-    height: 350px;
-    /* Definindo uma altura fixa para garantir que o carrossel seja quadrado */
-}
-
-.carousel-slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-    height: 100%;
-    /* Adicionado para manter proporção */
-}
-
-.carousel-image {
-    width: 100%;
-    height: 100%;
-    /* Garante que a imagem ocupe todo o espaço */
-    flex: 0 0 100%;
-    /* Impede que mais de uma imagem apareça */
-    object-fit: cover;
-    /* Garante que a imagem preencha o espaço cortando as bordas se necessário */
-    border-radius: 0.75rem;
-    /* Bordas arredondadas */
-}
-
-.carousel-image.about-image {
-    /* Esta classe específica também se beneficia dos ajustes */
-    object-fit: cover;
-    border-radius: 0.75rem;
-}
-
-.carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-    z-index: 10;
-    color: var(--primary-blue);
-}
-
-.carousel-arrow:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-}
-
-.carousel-arrow i {
-    width: 24px;
-    height: 24px;
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-.carousel-container:hover .carousel-arrow {
-    opacity: 1;
-}
-
 /* Novos estilos para a seção de Artigos */
 .article-card {
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* Garante que todos os cards tenham a mesma altura em uma linha */
     background-color: white;
     border-radius: 0.75rem;
     box-shadow: 0 2px 8px var(--shadow-medium);
@@ -1194,7 +1145,6 @@ footer .footer-links a:hover {
 .article-card-image-container {
     width: 100%;
     height: 200px;
-    /* Altura fixa para as imagens dos artigos */
     overflow: hidden;
     border-top-left-radius: 0.75rem;
     border-top-right-radius: 0.75rem;
@@ -1293,7 +1243,6 @@ footer .footer-links a:hover {
 
 /* --- Estilos para o Conteúdo de Artigos Injetado --- */
 .article-content-container {
-    /* Nova classe para o div do fullContent */
     padding: 1rem 0;
     margin-top: 1.5rem;
     font-size: 1.05rem;
@@ -1330,18 +1279,15 @@ footer .footer-links a:hover {
 .article-content-container ul,
 .article-content-container ol {
     padding-left: 1.8rem;
-    /* Indentação para listas */
     margin-bottom: 1rem;
 }
 
 .article-content-container ul {
     list-style: disc;
-    /* Bolinhas para listas não ordenadas */
 }
 
 .article-content-container ol {
     list-style: decimal;
-    /* Números para listas ordenadas */
 }
 
 .article-content-container ul li,
@@ -1357,4 +1303,177 @@ footer .footer-links a:hover {
 
 .article-content-container a:hover {
     color: var(--dark-blue);
+}
+
+/* --- ESTILOS PARA SEÇÃO DE MÍDIA (ENTREVISTAS E VÍDEOS) --- */
+#media-section {
+    padding: 3rem 0;
+    /* Espaçamento da seção */
+    background-color: var(--gray-light);
+    /* Um fundo suave para destacar a seção */
+}
+
+#media-section h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.media-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Garante que os cards tenham a mesma altura na grid */
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    overflow: hidden;
+    /* Garante que a imagem arredondada funcione bem */
+}
+
+.media-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px var(--shadow-dark);
+}
+
+.media-card .media-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.media-card-image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* Proporção 16:9 (para vídeos) */
+    background-color: var(--gray-medium);
+    /* Cor de fundo enquanto a imagem carrega */
+    overflow: hidden;
+    flex-shrink: 0;
+    /* Impede que o contêiner de imagem encolha */
+    border-bottom: 1px solid var(--gray-medium);
+    /* Linha sutil separando imagem do conteúdo */
+}
+
+.media-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Garante que a imagem preencha o espaço sem distorcer */
+    transition: transform 0.3s ease-in-out;
+}
+
+.media-card:hover .media-card-image {
+    transform: scale(1.05);
+    /* Efeito de zoom na imagem ao passar o mouse */
+}
+
+.media-card-image-container .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(37, 99, 235, 0.8);
+    /* primary-blue com opacidade */
+    border-radius: 50%;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    /* Tamanho do ícone */
+    opacity: 0;
+    /* Escondido por padrão */
+    transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+    /* Para ficar acima da imagem */
+    pointer-events: none;
+    /* Para não bloquear o clique no link */
+}
+
+.media-card-image-container .play-icon i {
+    width: 2.5rem;
+    /* Tamanho Lucide */
+    height: 2.5rem;
+    /* Tamanho Lucide */
+}
+
+.media-card:hover .play-icon {
+    opacity: 1;
+    /* Mostra o ícone no hover */
+    transform: translate(-50%, -50%) scale(1.1);
+    /* Efeito de pulso */
+    background-color: var(--dark-blue);
+}
+
+
+.media-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Faz o conteúdo ocupar o espaço restante */
+    justify-content: space-between;
+    /* Alinha o título/descrição ao topo e botões ao final */
+}
+
+.media-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-dark);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+}
+
+.media-card-description {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    /* Faz a descrição empurrar o botão para baixo */
+}
+
+/* Responsividade para mobile, se necessário ajustar os tamanhos de fonte ou padding */
+@media (max-width: 767px) {
+    #media-section {
+        padding: 2rem 0;
+        /* Reduz padding para mobile */
+    }
+
+    #media-section h3 {
+        font-size: 1.75rem;
+    }
+
+    .media-card-content {
+        padding: 1rem;
+    }
+
+    .media-card-title {
+        font-size: 1.1rem;
+    }
+
+    .media-card-description {
+        font-size: 0.85rem;
+    }
+
+    .media-card-image-container .play-icon {
+        padding: 0.6rem;
+        font-size: 2rem;
+    }
+
+    .media-card-image-container .play-icon i {
+        width: 2rem;
+        height: 2rem;
+    }
 }

@@ -44,7 +44,6 @@ body {
     padding-left: 1rem;
     padding-right: 1rem;
     box-sizing: border-box;
-    /* Para evitar que padding aumente a largura total */
 }
 
 /* Header */
@@ -62,17 +61,14 @@ header .flex {
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
-    /* Padding interno para o container do header */
 }
 
 header h1 {
     font-size: 1.25rem;
-    /* Ajustado para caber melhor com nome completo */
     font-weight: 700;
     color: var(--gray-dark);
     margin: 0;
     white-space: nowrap;
-    /* Para evitar quebra de linha no nome do doutor */
 }
 
 .logo-container {
@@ -81,11 +77,10 @@ header h1 {
     gap: 0.5rem;
 }
 
-.logo-animation {
+.logo-image {
     width: 2rem;
     height: 2rem;
-    color: var(--primary-blue);
-    /* animation: pulse-brain 2s infinite ease-in-out; (Se a animação pulse-brain estiver definida) */
+    object-fit: contain;
 }
 
 /* Keyframe para pulse-brain (se não existir em outro lugar) */
@@ -108,7 +103,6 @@ nav {
     flex-direction: column;
     position: absolute;
     top: 100%;
-    /* Logo abaixo do header */
     left: 0;
     width: 100%;
     background-color: white;
@@ -119,7 +113,6 @@ nav {
     animation: slideDown 0.3s ease-out forwards;
     border-top: 1px solid var(--gray-medium);
     z-index: 999;
-    /* Para ficar acima do conteúdo mas abaixo do header */
 }
 
 nav.open {
@@ -144,9 +137,7 @@ nav.open {
     cursor: pointer;
     padding: 0.85rem 1.25rem;
     font-size: 1.05rem;
-    /* Levemente menor que o exemplo anterior, mas ok */
     font-weight: 500;
-    /* Alterado para 500, desktop é 600 no hover */
     color: var(--text-gray);
     position: relative;
     transition: all 0.3s ease-in-out;
@@ -157,7 +148,6 @@ nav.open {
 
 .nav-button:hover,
 .nav-button:focus {
-    /* Adicionado :focus para acessibilidade */
     color: var(--primary-blue);
     background-color: var(--light-blue);
 }
@@ -175,7 +165,6 @@ nav.open {
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
-    /* Ajustado para ser um pouco menor */
     height: 3px;
     background-color: var(--primary-blue);
     border-radius: 2px;
@@ -184,7 +173,6 @@ nav.open {
 
 .nav-underline {
     display: none;
-    /* Não usado no mobile tipicamente */
 }
 
 @keyframes expandUnderline {
@@ -195,8 +183,6 @@ nav.open {
     to {
         width: 70%;
     }
-
-    /* Coerente com o ::after */
 }
 
 .menu-button {
@@ -216,34 +202,26 @@ nav.open {
 
 /* Hero Section (Avatar e primeira descrição) */
 .hero-section {
-    /* Este é o hero DENTRO da seção about-section */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    /* Reduzido para mobile */
     padding: 1.5rem 0;
-    /* Reduzido para mobile */
     text-align: center;
 }
 
 .avatar-container {
     width: 12rem;
-    /* Reduzido para mobile */
     height: 12rem;
-    /* Reduzido para mobile */
     border-radius: 50%;
-    /* Garante círculo perfeito */
     overflow: hidden;
     border: 5px solid var(--primary-blue);
     box-shadow: 0 6px 12px var(--shadow-dark);
-    /* Sombra mais sutil */
     transition: transform 0.3s ease-out;
 }
 
 .avatar-container:hover {
     transform: scale(1.03);
-    /* Efeito hover sutil */
 }
 
 .avatar-image {
@@ -254,18 +232,16 @@ nav.open {
 }
 
 .hero-content h2 {
-    /* Nome do Dr. */
     font-size: 1.75rem;
-    /* Reduzido */
+    /* Nome do doutor: Maior */
     font-weight: 700;
     color: var(--gray-dark);
     margin-bottom: 0.75rem;
-    /* Reduzido */
 }
 
 .hero-content .description {
-    font-size: 0.95rem;
-    /* Reduzido */
+    font-size: 0.85rem;
+    /* Descrição: Menor (ajustado de 0.9rem para 0.85rem) */
     color: var(--text-gray);
     margin: 1rem auto;
     max-width: 90%;
@@ -273,15 +249,29 @@ nav.open {
 
 .hero-content .description p {
     margin-bottom: 0.75rem;
-    /* Reduzido */
 }
 
 .hero-content .text-blue {
     color: var(--primary-blue);
     font-weight: 500;
     font-size: 1rem;
-    /* Reduzido */
+    /* Mantido para outros usos de text-blue */
 }
+
+/* NOVO ESTILO: Para o texto menor e azul abaixo do nome do Dr. */
+.hero-content .small-text-below-name {
+    font-size: 0.95rem;
+    /* CRM/RQE: Tamanho médio (ajustado de 0.95em para 0.95rem, que é um tamanho em pixels mais controlável) */
+    color: var(--primary-blue);
+    /* Agora o texto será azul */
+    margin-top: -0.4rem;
+    /* Puxa um pouco para cima para ficar mais próximo do nome */
+    margin-bottom: 0.8rem;
+    /* Espaçamento com o parágrafo de baixo */
+    line-height: 1.2;
+    font-weight: 400;
+}
+
 
 .hero-content .text-bold {
     font-weight: 600;
@@ -295,7 +285,6 @@ nav.open {
     gap: 0.75rem;
     width: 100%;
     margin-top: 1rem;
-    /* Espaçamento adicionado */
 }
 
 /* Buttons */
@@ -304,20 +293,15 @@ nav.open {
     align-items: center;
     justify-content: center;
     padding: 0.7rem 1.3rem;
-    /* Levemente ajustado */
     font-size: 0.9rem;
-    /* Reduzido */
     font-weight: 600;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
-    /* Transição mais rápida */
     border: 2px solid transparent;
     text-decoration: none;
     width: 85%;
-    /* Largura um pouco menor */
     max-width: 280px;
-    /* Max largura menor */
     box-sizing: border-box;
 }
 
@@ -334,7 +318,6 @@ nav.open {
 .primary-button:hover {
     background-color: var(--dark-blue);
     transform: translateY(-1px);
-    /* Efeito sutil */
     box-shadow: 0 3px 6px rgba(37, 99, 235, 0.4);
 }
 
@@ -376,9 +359,7 @@ nav.open {
 }
 
 .content-section h3 {
-    /* Títulos das seções como "Sobre Mim", "Formação..." */
     font-size: 1.6rem;
-    /* Reduzido */
     font-weight: 700;
     color: var(--gray-dark);
     margin-bottom: 1.5rem;
@@ -388,7 +369,6 @@ nav.open {
 /* Específico para o H3 dentro de #about-section que vem DEPOIS do hero-content-wrapper */
 #about-section>h3 {
     margin-top: 2rem;
-    /* Adiciona mais espaço acima do "Sobre Mim" textual */
     margin-bottom: 1rem;
 }
 
@@ -397,17 +377,13 @@ nav.open {
 .grid {
     display: grid;
     grid-template-columns: 1fr;
-    /* Padrão de uma coluna para mobile */
     gap: 1.5rem;
-    /* Espaçamento entre itens do grid */
 }
 
 /* Estilização para a parte textual e imagem da seção "Sobre Mim" */
 #about-section .about-text-content {
     text-align: left;
-    /* Alinhamento à esquerda para parágrafos */
     padding: 0 0.5rem;
-    /* Pequeno padding lateral */
 }
 
 #about-section .about-text-content p {
@@ -418,88 +394,43 @@ nav.open {
 
 #about-section .about-image-container {
     order: -1;
-    /* Imagem primeiro no mobile, se desejado */
     margin-bottom: 1.5rem;
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    /* Centraliza verticalmente o image-wrapper */
 }
 
-/* Carrossel na seção "Sobre Mim" */
-.carousel-container {
+#about-section .image-wrapper {
     position: relative;
     width: 100%;
     max-width: 300px;
-    height: 300px; /* AJUSTADO: Altura aumentada */
-    margin: 0 auto;
+    /* Limita o tamanho máximo no mobile */
+    padding-bottom: 100%;
+    /* Força proporção 1:1 (quadrado) */
     overflow: hidden;
     border-radius: 0.75rem;
-    box-shadow: 0 4px 8px var(--shadow-medium);
+    box-shadow: 0 4px 10px var(--shadow-medium);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 }
 
-.carousel-slides {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-    /* Será ajustado por JS se houver múltiplas imagens */
+#about-section .image-wrapper:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px var(--shadow-dark);
 }
 
-.carousel-image.about-image {
-    /* Específico para as imagens do carrossel "Sobre Mim" */
-    width: 100%;
-    height: 100%; /* AJUSTADO: Garante que a imagem preencha a nova altura do contêiner */
-    min-width: 100%;
-    /* Garante que cada slide ocupe o contêiner */
-    object-fit: cover;
-    border-radius: 0.75rem;
-    /* Se as imagens individuais devem ter borda arredondada */
-    flex-shrink: 0;
-    /* Impede que as imagens encolham */
-}
-
-.carousel-arrow {
+#about-section .about-image {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.6);
-    border: none;
-    border-radius: 50%;
-    width: 35px;
-    /* Menor para mobile */
-    height: 35px;
-    /* Menor para mobile */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    /* Escondido por padrão, aparece no hover do container */
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-    z-index: 10;
-    color: var(--primary-blue);
-}
-
-.carousel-arrow:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-.carousel-arrow i {
-    width: 20px;
-    /* Ícone menor */
-    height: 20px;
-    /* Ícone menor */
-}
-
-.prev {
-    left: 8px;
-}
-
-.next {
-    right: 8px;
-}
-
-.carousel-container:hover .carousel-arrow {
-    opacity: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 0.75rem;
+    box-shadow: none;
+    display: block;
 }
 
 
@@ -518,34 +449,28 @@ nav.open {
 }
 
 .card:hover {
-    /* Efeito hover sutil para mobile, se ativado por toque longo em alguns casos */
     transform: translateY(-3px);
     box-shadow: 0 4px 8px var(--shadow-dark);
 }
 
 .card-header {
     padding: 1rem 1.25rem;
-    /* Padding ajustado */
     border-bottom: 1px solid var(--gray-medium);
     display: flex;
     flex-direction: column;
-    /* Ícone acima do título */
     align-items: center;
     text-align: center;
 }
 
 .card-title {
     font-size: 1.1rem;
-    /* Ajustado */
     font-weight: 600;
     color: var(--gray-dark);
     margin-top: 0.5rem;
-    /* Espaço entre ícone e título */
     line-height: 1.3;
 }
 
 .card-description {
-    /* Usado nos cards de especialidades */
     font-size: 0.9rem;
     color: var(--text-gray);
     margin-top: 0.3rem;
@@ -563,18 +488,13 @@ nav.open {
 }
 
 .specialty-card .icon-large {
-    /* Classe para os ícones das especialidades */
     width: 2.5rem;
-    /* Tamanho do ícone */
     height: 2.5rem;
     margin-bottom: 0.5rem;
-    /* Espaço abaixo do ícone */
     color: var(--primary-blue);
-    /* Cor padrão, pode ser sobrescrita se necessário */
 }
 
 .specialty-card:hover {
-    /* Efeito de hover para cards de especialidades */
     background-color: var(--primary-blue);
     color: white;
 }
@@ -586,7 +506,6 @@ nav.open {
 .specialty-card:hover .card-title,
 .specialty-card:hover .card-description,
 .specialty-card:hover .text-primary-blue {
-    /* Para o ícone mudar de cor também */
     color: white;
 }
 
@@ -613,9 +532,7 @@ nav.open {
     flex-shrink: 0;
     color: var(--primary-blue);
     width: 1.25rem;
-    /* Tamanho ajustado */
     height: 1.25rem;
-    /* Tamanho ajustado */
     margin-top: 0.15rem;
 }
 
@@ -625,7 +542,6 @@ nav.open {
     margin: 0 0 0.15rem 0;
     line-height: 1.3;
     font-size: 0.95rem;
-    /* Ajustado */
 }
 
 .info-item-content p,
@@ -644,14 +560,6 @@ nav.open {
     color: var(--primary-blue);
 }
 
-.no-underline {
-    text-decoration: none;
-}
-
-.hover\:underline:hover {
-    text-decoration: underline;
-}
-
 
 /* Seção de Artigos Recentes */
 #articles-section h3 {
@@ -665,7 +573,6 @@ nav.open {
     transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
     overflow: hidden;
     margin-bottom: 1.5rem;
-    /* Espaçamento entre cards de artigo */
     display: flex;
     flex-direction: column;
 }
@@ -682,10 +589,7 @@ nav.open {
 .article-card-image-container {
     width: 100%;
     height: 180px;
-    /* Altura fixa para a imagem no mobile */
     overflow: hidden;
-    /* border-top-left-radius: 0.75rem; (Removido pois o card já tem) */
-    /* border-top-right-radius: 0.75rem; (Removido pois o card já tem) */
 }
 
 .article-card-image {
@@ -701,38 +605,30 @@ nav.open {
 
 .article-card-content {
     padding: 1rem 1.25rem;
-    /* Padding ajustado */
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    /* Para o botão "Leia Mais" ficar no final */
 }
 
 .article-card-date {
     font-size: 0.8rem;
-    /* Ajustado */
     color: var(--text-gray);
     margin-bottom: 0.4rem;
-    /* Ajustado */
 }
 
 .article-card-title {
     font-size: 1.05rem;
-    /* Ajustado */
     font-weight: 600;
     color: var(--gray-dark);
     margin-bottom: 0.5rem;
-    /* Ajustado */
     line-height: 1.3;
 }
 
 .article-card-description {
     font-size: 0.9rem;
-    /* Ajustado */
     color: var(--text-gray);
     flex-grow: 1;
     margin-bottom: 1rem;
-    /* Espaço antes do botão */
     line-height: 1.5;
 }
 
@@ -742,14 +638,11 @@ nav.open {
     color: var(--primary-blue);
     border: 1px solid var(--primary-blue);
     padding: 0.5rem 1rem;
-    /* Padding ajustado */
     border-radius: 0.4rem;
-    /* Raio ajustado */
     font-weight: 500;
     text-decoration: none;
     transition: all 0.2s ease;
     font-size: 0.85rem;
-    /* Ajustado */
 }
 
 .read-more-button:hover {
@@ -759,7 +652,6 @@ nav.open {
 
 /* Seção de Contato */
 #contact-section p {
-    /* Parágrafo introdutório */
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
@@ -770,40 +662,31 @@ nav.open {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
-    /* Espaçamento ajustado */
     margin-top: 1.5rem;
     margin-bottom: 2rem;
-    /* Espaço antes do formulário ou redes sociais */
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
-    /* Ícone alinha com o topo do texto */
     gap: 1rem;
 }
 
 .contact-item a.contact-link {
-    /* Estilo para o link que envolve o item de contato */
     display: flex;
     align-items: flex-start;
     gap: 1rem;
     text-decoration: none;
     color: inherit;
-    /* Herda a cor do texto normal */
     width: 100%;
     transition: transform 0.2s ease;
 }
 
-.contact-item a.contact-link:hover {
-    /* transform: translateX(3px); Efeito de deslocamento sutil no hover */
-    /* Pode não ser ideal para mobile, mas mantido para consistência se houver interação */
-}
+.contact-item a.contact-link:hover {}
 
 .contact-item .icon-circle {
     background-color: var(--light-blue);
     padding: 0.7rem;
-    /* Padding ajustado */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -812,15 +695,12 @@ nav.open {
     color: var(--primary-blue);
     transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
     width: 2rem;
-    /* Tamanho fixo do círculo */
     height: 2rem;
-    /* Tamanho fixo do círculo */
     box-sizing: border-box;
 }
 
 .contact-item .icon-circle i {
     width: 1.1rem;
-    /* Tamanho do ícone dentro do círculo */
     height: 1.1rem;
 }
 
@@ -835,15 +715,12 @@ nav.open {
     color: var(--gray-dark);
     display: block;
     margin-bottom: 0.15rem;
-    /* Ajustado */
     font-size: 0.9rem;
-    /* Ajustado */
 }
 
 .contact-item-content .value {
     color: var(--text-gray);
     font-size: 0.85rem;
-    /* Ajustado */
     line-height: 1.5;
 }
 
@@ -855,32 +732,26 @@ nav.open {
 
 .contact-socials h4 {
     font-size: 1.1rem;
-    /* Ajustado */
     font-weight: 600;
     color: var(--gray-dark);
     margin-bottom: 1rem;
-    /* Ajustado */
     text-align: center;
 }
 
 .contact-socials .social-icons {
     display: flex;
-    /* Já é flex */
     justify-content: center;
     gap: 1.5rem;
-    /* Espaçamento ajustado */
 }
 
 .social-icons a {
     color: var(--text-gray);
     transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
     font-size: 1.4rem;
-    /* Tamanho ajustado */
 }
 
 .social-icons a i {
     display: block;
-    /* Para que o transform funcione corretamente */
 }
 
 .social-icons a:hover {
@@ -890,13 +761,10 @@ nav.open {
 
 /* Formulário de Contato */
 form.bg-white {
-    /* Estilo para o container do formulário */
     background-color: white;
     padding: 1.5rem 1.25rem;
-    /* Padding ajustado */
     border-radius: 0.75rem;
     box-shadow: 0 2px 8px var(--shadow-medium);
-    /* Sombra um pouco mais pronunciada */
 }
 
 .form-group {
@@ -914,9 +782,7 @@ form.bg-white {
 .input-field,
 textarea {
     width: 100%;
-    /* Ocupa toda a largura do form-group */
     padding: 0.7rem 0.9rem;
-    /* Padding ajustado */
     border: 1px solid var(--gray-medium);
     border-radius: 0.4rem;
     font-size: 0.9rem;
@@ -924,24 +790,20 @@ textarea {
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     box-sizing: border-box;
-    /* Importante! */
 }
 
 .input-field:focus,
 textarea:focus {
     border-color: var(--primary-blue);
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
-    /* Sombra mais sutil */
 }
 
 textarea {
     resize: vertical;
     min-height: 75px;
-    /* Altura mínima ajustada */
 }
 
 .button-center-wrapper {
-    /* Para centralizar o botão de submit */
     display: flex;
     justify-content: center;
     width: 100%;
@@ -950,9 +812,7 @@ textarea {
 
 .button-center-wrapper .button.primary-button.w-full {
     width: 100%;
-    /* Botão ocupa toda a largura do wrapper */
     max-width: none;
-    /* Remove o max-width anterior para ocupar 100% */
 }
 
 
@@ -961,7 +821,6 @@ footer {
     background-color: var(--gray-dark);
     color: white;
     padding: 1.75rem 0 1.5rem 0;
-    /* Padding ajustado */
     text-align: center;
 }
 
@@ -970,65 +829,51 @@ footer .flex-container {
     flex-direction: column;
     align-items: center;
     gap: 1.25rem;
-    /* Espaçamento ajustado */
 }
 
 footer .logo-container {
     margin-bottom: 0.5rem;
-    /* Reduzido */
     display: flex;
-    /* Para alinhar ícone e texto */
     align-items: center;
     gap: 0.5rem;
 }
 
 footer .logo-container span {
     font-size: 1.3rem;
-    /* Ajustado */
     font-weight: 700;
     color: white;
 }
 
 footer .logo-animation {
-    /* Ícone do cérebro no footer */
     color: white;
     width: 1.8rem;
     height: 1.8rem;
 }
 
-/* footer .text-gray-400 (Se usado, defina a cor) */
-
 footer .social-icons {
-    /* Ícones sociais no footer */
     margin-top: 0.5rem;
-    /* Espaço acima dos ícones sociais no footer */
     gap: 1.2rem;
 }
 
 footer .social-icons a i {
     color: white;
-    /* Garante que os ícones no footer sejam brancos */
     font-size: 1.3rem;
 }
 
 footer .social-icons a:hover i {
     color: var(--accent-blue);
-    /* Cor no hover para ícones do footer */
     transform: translateY(-2px);
 }
 
 .copyright {
     padding-top: 1.25rem;
     border-top: 1px solid #374151;
-    /* Linha divisória mais escura */
     margin-top: 1.5rem;
     font-size: 0.8rem;
     color: var(--gray-medium);
-    /* Cor mais clara para o copyright */
 }
 
 .copyright .container {
-    /* Para garantir padding no texto do copyright */
     padding-left: 1rem;
     padding-right: 1rem;
 }
@@ -1059,22 +904,18 @@ footer .social-icons a:hover i {
     margin-left: 0.75rem;
 }
 
-/* Ajustado para mobile */
 .space-x-6>*:not([hidden])~*:not([hidden]) {
     margin-left: 1rem;
 }
 
-/* Ajustado para mobile */
 .gap-6 {
     gap: 1.5rem;
 }
 
-/* Ajustado para mobile */
 .gap-8 {
     gap: 1.5rem;
 }
 
-/* Ajustado para mobile */
 .mt-4 {
     margin-top: 1rem;
 }
@@ -1084,7 +925,6 @@ footer .social-icons a:hover i {
     opacity: 0;
     transform: translateY(15px);
     animation: fade-in-up 0.6s 0.2s ease-out forwards;
-    /* Adicionado pequeno delay padrão */
 }
 
 .fade-in-up.delay-1 {
@@ -1161,26 +1001,180 @@ footer .social-icons a:hover i {
 #nav-button-about,
 #nav-button-atuacao {
     white-space: normal;
-    /* Permite quebra de linha se o texto for muito grande */
 }
 
 #nav-button-atuacao br,
-#nav-button-about br {
-    /* Se você não quiser o <br> no mobile, pode esconder */
-    /* display: none; */
+#nav-button-about br {}
+
+/* --- ESTILOS PARA SEÇÃO DE MÍDIA (ENTREVISTAS E VÍDEOS) --- */
+#media-section {
+    padding: 3rem 0;
+    /* Espaçamento da seção */
+    background-color: var(--gray-light);
+    /* Um fundo suave para destacar a seção */
 }
 
-/* Ajustes finais para garantir harmonia */
-h1,
-h2,
-h3,
-h4 {
+#media-section h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-dark);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.media-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* Garante que os cards tenham a mesma altura na grid */
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px var(--shadow-medium);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    overflow: hidden;
+    /* Garante que a imagem arredondada funcione bem */
+}
+
+.media-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 16px var(--shadow-dark);
+}
+
+.media-card .media-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.media-card-image-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* Proporção 16:9 (para vídeos) */
+    background-color: var(--gray-medium);
+    /* Cor de fundo enquanto a imagem carrega */
+    overflow: hidden;
+    flex-shrink: 0;
+    /* Impede que o contêiner de imagem encolha */
+    border-bottom: 1px solid var(--gray-medium);
+    /* Linha sutil separando imagem do conteúdo */
+}
+
+.media-card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Garante que a imagem preencha o espaço sem distorcer */
+    transition: transform 0.3s ease-in-out;
+}
+
+.media-card:hover .media-card-image {
+    transform: scale(1.05);
+    /* Efeito de zoom na imagem ao passar o mouse */
+}
+
+.media-card-image-container .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(37, 99, 235, 0.8);
+    /* primary-blue com opacidade */
+    border-radius: 50%;
+    padding: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    /* Tamanho do ícone */
+    opacity: 0;
+    /* Escondido por padrão */
+    transition: opacity 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+    /* Para ficar acima da imagem */
+    pointer-events: none;
+    /* Para não bloquear o clique no link */
+}
+
+.media-card-image-container .play-icon i {
+    width: 2.5rem;
+    /* Tamanho Lucide */
+    height: 2.5rem;
+    /* Tamanho Lucide */
+}
+
+.media-card:hover .play-icon {
+    opacity: 1;
+    /* Mostra o ícone no hover */
+    transform: translate(-50%, -50%) scale(1.1);
+    /* Efeito de pulso */
+    background-color: var(--dark-blue);
+}
+
+
+.media-card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Faz o conteúdo ocupar o espaço restante */
+    justify-content: space-between;
+    /* Alinha o título/descrição ao topo e botões ao final */
+}
+
+.media-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-dark);
+    margin-top: 0;
+    margin-bottom: 0.75rem;
     line-height: 1.3;
-    /* Melhorar a legibilidade dos títulos */
 }
 
-/*
-    Remover sobreposições de `desktop.css` se este arquivo for carregado após ele
-    ou se as classes forem muito genéricas. Como `mobile.html` é separado,
-    isso é menos problemático, mas é bom ter em mente.
-*/
+.media-card-description {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    /* Faz a descrição empurrar o botão para baixo */
+}
+
+/* Responsividade para mobile, se necessário ajustar os tamanhos de fonte ou padding */
+@media (max-width: 767px) {
+    #media-section {
+        padding: 2rem 0;
+        /* Reduz padding para mobile */
+    }
+
+    #media-section h3 {
+        font-size: 1.75rem;
+    }
+
+    .media-card-content {
+        padding: 1rem;
+    }
+
+    .media-card-title {
+        font-size: 1.1rem;
+    }
+
+    .media-card-description {
+        font-size: 0.85rem;
+    }
+
+    .media-card-image-container .play-icon {
+        padding: 0.6rem;
+        font-size: 2rem;
+    }
+
+    .media-card-image-container .play-icon i {
+        width: 2rem;
+        height: 2rem;
+    }
+}
