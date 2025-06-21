@@ -303,13 +303,31 @@ footer .social-icons a:hover {
         font-size: 0.85rem;
     }
     .article-full-content {
-        font-size: 1rem;
+        font-size: 0.95rem; /* AJUSTADO: Fonte um pouco menor para mobile */
+        line-height: 1.7; /* Para boa legibilidade */
+        padding: 0 1rem; /* AJUSTADO: Adiciona padding nas laterais */
+        text-align: left; /* Garante alinhamento à esquerda */
     }
+
+    /* Ajuste para cabeçalhos e listas dentro do conteúdo do artigo */
     .article-full-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.6rem; /* Ajuste se quiser menor */
+        text-align: left; /* Alinha à esquerda */
+        padding-left: 1rem; /* Alinha com o texto */
     }
     .article-full-content h3 {
-        font-size: 1.3rem;
+        font-size: 1.4rem; /* Ajuste se quiser menor */
+        text-align: left; /* Alinha à esquerda */
+        padding-left: 1rem; /* Alinha com o texto */
+    }
+    .article-full-content p,
+    .article-full-content ul,
+    .article-full-content ol {
+        padding: 0 1rem; /* Garante padding para parágrafos e listas */
+    }
+    .article-full-content ul,
+    .article-full-content ol {
+        padding-left: 2.5rem; /* Mantém o recuo para listas */
     }
     footer {
         padding: 1.5rem 0;
