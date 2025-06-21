@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigo - Dr. Fernando Topanotti Tarabay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="article.css"> <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
+<body>
+    <header>
+        <div class="container flex">
+            <div class="logo-container">
+                <i data-lucide="brain" class="logo-animation"></i>
+                <h1>Dr. Fernando Topanotti Tarabay</h1>
+            </div>
+            <nav>
+                </nav>
+            <button id="back-button" class="button outline-button">
+                <i data-lucide="arrow-left" style="margin-right: 0.5rem;"></i> Voltar
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="article-detail-section" class="container content-section">
+            <div class="article-header">
+                <h1 id="article-title">Carregando Artigo...</h1>
+                <p id="article-date" class="article-meta"></p>
+                <img id="article-image" src="" alt="Imagem do Artigo" class="article-image">
+            </div>
+            <div id="article-content" class="article-full-content">
+                <p>Por favor, aguarde enquanto o conteúdo do artigo é carregado.</p>
+            </div>
+            <div class="button-container">
+                <a href="desktop.html#articles-section" class="button primary-button">Ver todos os Artigos</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container flex-container">
+            <div class="logo-container">
+                <i data-lucide="brain" class="logo-animation" style="color: white;"></i>
+                <span style="color: white;">Dr. Fernando Topanotti</span>
+            </div>
+            <div class="social-icons flex space-x-3 mt-4">
+                <a href="https://www.instagram.com/fernandotopanotti.neuro" target="_blank" aria-label="Instagram"><i data-lucide="instagram" style="color: white;"></i></a>
+                <a href="https://www.facebook.com/fernando.topanottitarabay?mibextid=ZbWKwL" target="_blank" aria-label="Facebook"><i data-lucide="facebook" style="color: white;"></i></a>
+                <a href="https://wa.me/5548991140848" target="_blank" aria-label="WhatsApp"><i data-lucide="whatsapp" style="color: white;"></i></a>
+            </div>
+        </div>
+        <div class="container copyright">
+            <p>© <span id="current-year"></span> Dr. Fernando Topanotti Tarabay. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="article.js"></script> <script>
+        // Atualiza o ano no rodapé
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+            lucide.createIcons(); // Garante que os ícones do header e footer sejam renderizados
+        });
+    </script>
+</body>
+</html>
