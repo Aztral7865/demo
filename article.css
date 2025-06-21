@@ -1,0 +1,309 @@
+/* article.css */
+
+/* Importações de fontes e variáveis globais (copie do seu desktop.css/mobile.css) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary-blue: #2563eb;
+    --dark-blue: #1d4ed8;
+    --light-blue: #eff6ff;
+    --background-white-subtle: #fbfbfc;
+    --gray-light: #f9fafb;
+    --gray-medium: #e5e7eb;
+    --gray-dark: #1f2937;
+    --text-gray: #4b5563;
+    --accent-blue: #60a5fa;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+    --shadow-dark: rgba(0, 0, 0, 0.2);
+    --whatsapp-green: #25d366;
+    --whatsapp-dark-green: #1da851;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--text-gray);
+    background-color: var(--background-white-subtle);
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 900px; /* Um pouco mais estreito para o conteúdo do artigo */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Header (copie do seu desktop.css/mobile.css e ajuste para a página de artigo) */
+header {
+    background-color: white;
+    box-shadow: 0 4px 6px -1px var(--shadow-medium), 0 2px 4px -1px var(--shadow-light);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header .flex {
+    display: flex;
+    justify-content: space-between; /* Alinha logo e botão Voltar nas extremidades */
+    align-items: center;
+    padding: 0 1rem;
+}
+
+header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--gray-dark);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo-animation {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--primary-blue);
+    /* animation: pulse-brain 2s infinite ease-in-out; */ /* Se quiser a animação */
+}
+
+/* Botões (copie os estilos existentes) */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    text-decoration: none;
+}
+
+.primary-button {
+    background-color: var(--primary-blue);
+    color: white;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+}
+
+.primary-button:hover {
+    background-color: var(--dark-blue);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 12px rgba(37, 99, 235, 0.4);
+}
+
+.outline-button {
+    background-color: transparent;
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.outline-button:hover {
+    background-color: var(--light-blue);
+    color: var(--dark-blue);
+    border-color: var(--dark-blue);
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Seção de Detalhes do Artigo */
+#article-detail-section {
+    padding: 3rem 0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.article-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#article-title {
+    font-size: 2.5rem;
+    color: var(--gray-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.article-meta {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+    margin-bottom: 1.5rem;
+}
+
+.article-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 10px var(--shadow-medium);
+    margin: 0 auto 2rem auto; /* Centraliza e adiciona margem inferior */
+    display: block; /* Garante que a imagem se comporta como um bloco para margin auto */
+}
+
+.article-full-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+/* Estilos para o conteúdo HTML injetado (h2, h3, p, ul, ol, strong, etc.) */
+.article-full-content h2 {
+    font-size: 2rem;
+    color: var(--gray-dark);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-medium);
+    padding-bottom: 0.5rem;
+}
+
+.article-full-content h3 {
+    font-size: 1.6rem;
+    color: var(--gray-dark);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-full-content p {
+    margin-bottom: 1.2rem;
+}
+
+.article-full-content ul,
+.article-full-content ol {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem;
+}
+
+.article-full-content ul li,
+.article-full-content ol li {
+    margin-bottom: 0.5rem;
+}
+
+.article-full-content strong {
+    font-weight: 600;
+    color: var(--gray-dark); /* Ou outra cor de destaque */
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Footer (copie do seu desktop.css/mobile.css e ajuste para a página de artigo) */
+footer {
+    background-color: var(--gray-dark);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+footer .flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .logo-container {
+    margin-bottom: 1rem;
+}
+
+footer .logo-container span {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+footer .social-icons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+footer .social-icons a {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
+    color: var(--primary-blue);
+}
+
+.copyright {
+    padding-top: 1.5rem;
+    border-top: 1px solid #374151;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+/* Animações (copie dos seus CSS existentes) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsividade básica para article.html */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 0;
+    }
+    header h1 {
+        font-size: 1.25rem;
+    }
+    .logo-animation {
+        width: 2rem;
+        height: 2rem;
+    }
+    #back-button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    #article-detail-section {
+        padding: 2rem 0;
+    }
+    #article-title {
+        font-size: 1.8rem;
+    }
+    .article-meta {
+        font-size: 0.85rem;
+    }
+    .article-full-content {
+        font-size: 1rem;
+    }
+    .article-full-content h2 {
+        font-size: 1.5rem;
+    }
+    .article-full-content h3 {
+        font-size: 1.3rem;
+    }
+    footer {
+        padding: 1.5rem 0;
+    }
+    footer .logo-container span {
+        font-size: 1.2rem;
+    }
+    footer .logo-animation {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+    .copyright {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        font-size: 0.8rem;
+    }
+}
