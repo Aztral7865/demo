@@ -431,8 +431,8 @@ nav.open {
     width: 100%;
     max-width: 300px;
     /* Ajuste conforme necessário */
-    height: auto;
-    /* Altura automática baseada na imagem */
+    height: 250px;
+    /* Definindo uma altura fixa para garantir que o carrossel seja quadrado em mobile */
     margin: 0 auto;
     /* Centraliza */
     overflow: hidden;
@@ -448,15 +448,15 @@ nav.open {
 }
 
 .carousel-image.about-image {
-    /* Específico para as imagens do carrossel "Sobre Mim" */
     width: 100%;
-    height: auto;
-    /* Mantém proporção */
+    height: 100%;
+    /* Garante que a imagem ocupe todo o espaço */
     min-width: 100%;
     /* Garante que cada slide ocupe o contêiner */
     object-fit: cover;
+    /* Garante que a imagem preencha o espaço cortando as bordas se necessário */
     border-radius: 0.75rem;
-    /* Se as imagens individuais devem ter borda arredondada */
+    /* Bordas arredondadas */
     flex-shrink: 0;
     /* Impede que as imagens encolham */
 }
@@ -477,7 +477,6 @@ nav.open {
     justify-content: center;
     cursor: pointer;
     opacity: 0;
-    /* Escondido por padrão, aparece no hover do container */
     transition: opacity 0.3s ease, background-color 0.3s ease;
     z-index: 10;
     color: var(--primary-blue);
@@ -993,13 +992,6 @@ footer .logo-container span {
     color: white;
 }
 
-footer .logo-animation {
-    /* Ícone do cérebro no footer */
-    color: white;
-    width: 1.8rem;
-    height: 1.8rem;
-}
-
 /* footer .text-gray-400 (Se usado, defina a cor) */
 
 footer .social-icons {
@@ -1183,8 +1175,86 @@ h4 {
     /* Melhorar a legibilidade dos títulos */
 }
 
-/*
-    Remover sobreposições de `desktop.css` se este arquivo for carregado após ele
-    ou se as classes forem muito genéricas. Como `mobile.html` é separado,
-    isso é menos problemático, mas é bom ter em mente.
-*/
+/* --- Estilos para o Conteúdo de Artigos Injetado --- */
+.article-content-container {
+    /* Nova classe para o div do fullContent */
+    padding: 1rem 0;
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-gray);
+}
+
+.article-content-container p {
+    margin-bottom: 1rem;
+    text-align: left;
+    /* No mobile, texto justificado pode quebrar mais feio */
+}
+
+.article-content-container h2,
+.article-content-container h3 {
+    color: var(--gray-dark);
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.article-content-container h2 {
+    font-size: 1.5rem;
+    /* Ajustado para mobile */
+}
+
+.article-content-container h3 {
+    font-size: 1.3rem;
+    /* Ajustado para mobile */
+}
+
+.article-content-container strong {
+    font-weight: 600;
+    color: var(--gray-dark);
+}
+
+.article-content-container ul,
+.article-content-container ol {
+    padding-left: 1.5rem;
+    /* Indentação para listas */
+    margin-bottom: 1rem;
+}
+
+.article-content-container ul {
+    list-style: disc;
+    /* Bolinhas para listas não ordenadas */
+}
+
+.article-content-container ol {
+    list-style: decimal;
+    /* Números para listas ordenadas */
+}
+
+.article-content-container ul li,
+.article-content-container ol li {
+    margin-bottom: 0.5rem;
+}
+
+.article-content-container a {
+    color: var(--primary-blue);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.article-content-container a:hover {
+    color: var(--dark-blue);
+}
+
+/* AJUSTE: Imagem do artigo em mobile */
+#article-image {
+    max-width: 90%;
+    /* Ajusta para 90% da largura do contêiner */
+    width: auto;
+    /* Permite que a largura seja flexível */
+    height: auto;
+    border-radius: 8px;
+    /* Mantém o border-radius */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Mantém a sombra */
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="article-title-tag">Carregando Artigo...</title>
+    <meta name="description" id="article-meta-description" content="Conteúdo do artigo.">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div id="main-site-content">
+        <header>
+            <div class="container flex">
+                <div class="logo-container">
+                    <i data-lucide="brain" class="logo-animation"></i>
+                    <h1>Dr. Fernando Topanotti Tarabay</h1>
+                </div>
+                <nav id="main-nav">
+                    <button class="nav-button" data-tab="about" id="nav-button-about">Sobre Mim</button>
+                    <button class="nav-button" data-tab="education-experience">Formação e<br>Experiência</button>
+                    <button class="nav-button" data-tab="specialties" id="nav-button-atuacao">Áreas de
+                        <br>atuação</button>
+                    <button class="nav-button" data-tab="articles">Artigos</button>
+                    <button class="nav-button" data-tab="contact">Contato</button>
+                    <div class="nav-underline"></div>
+                </nav>
+                <button id="mobile-menu-button" class="menu-button">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section id="single-article-section" class="content-section container active"
+                style="padding-top: 3rem; padding-bottom: 3rem;">
+                <h1 id="article-main-title"
+                    style="text-align: center; margin-bottom: 1.5rem; font-size: 2rem; color: var(--gray-dark);"></h1>
+                <p class="article-info" style="text-align: center; color: var(--text-gray); margin-bottom: 1.5rem;">
+                    <span id="article-date"></span></p>
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <img id="article-image" src="" alt="">
+                </div>
+                <div id="article-full-content" class="article-content-container">
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="index.html" class="button primary-button">
+                        <i data-lucide="arrow-left" style="margin-right: 0.5rem;"></i> Voltar para a Home
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container flex-container">
+                <div class="logo-container">
+                    <i data-lucide="brain" class="logo-animation" style="color: white;"></i>
+                    <span>Dr. Fernando Topanotti</span>
+                </div>
+                <div class="social-icons flex space-x-3 mt-4">
+                    <a href="https://www.instagram.com/fernandotopanotti.neuro" target="_blank" aria-label="Instagram">
+                        <i data-lucide="instagram" style="color: white;"></i>
+                    </a>
+                    <a href="https://www.facebook.com/fernando.topanottitarabay?mibextid=ZbWKwL" target="_blank"
+                        aria-label="Facebook">
+                        <i data-lucide="facebook" style="color: white;"></i>
+                    </a>
+                    <a href="https://wa.me/5548991140848" target="_blank" aria-label="WhatsApp">
+                        <i data-lucide="whatsapp" style="color: white;"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="container copyright">
+                <p>© <span id="current-year"></span> Dr. Fernando Topanotti Tarabay. Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            const articleTitleTag = document.getElementById('article-title-tag');
+            const articleMetaDescription = document.getElementById('article-meta-description');
+            const articleMainTitle = document.getElementById('article-main-title');
+            const articleDate = document.getElementById('article-date');
+            const articleImage = document.getElementById('article-image');
+            const articleFullContent = document.getElementById('article-full-content');
+            const currentYearSpan = document.getElementById('current-year');
+
+            const loadResponsiveCSS = () => {
+                const head = document.head || document.getElementsByTagName('head')[0];
+                let link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.id = 'responsive-css';
+
+                const existingLink = document.getElementById('responsive-css');
+                if (existingLink) {
+                    existingLink.parentNode.removeChild(existingLink);
+                }
+
+                if (window.innerWidth > 767) {
+                    link.href = 'desktop.css';
+                } else {
+                    link.href = 'mobile.css';
+                }
+                head.appendChild(link);
+            };
+
+            loadResponsiveCSS();
+            window.addEventListener('resize', loadResponsiveCSS);
+
+            // Lógica para os botões de navegação do header na página do artigo
+            const navButtons = document.querySelectorAll('#main-nav .nav-button');
+            navButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault(); // Impede o comportamento padrão do botão
+
+                    const tabId = button.dataset.tab;
+                    const targetPage = window.innerWidth > 767 ? 'desktop.html' : 'mobile.html';
+
+                    // Definir uma flag no sessionStorage para pular a splash screen
+                    sessionStorage.setItem('skipSplashScreen', 'true');
+
+                    // Redireciona para a página principal (desktop/mobile) com o hash da seção
+                    window.location.href = `${targetPage}#${tabId}-section`;
+                });
+            });
+
+            // Lógica para o botão de menu mobile na página do artigo
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mainNav = document.getElementById('main-nav');
+
+            if (mobileMenuButton && mainNav) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mainNav.classList.toggle('open');
+                    const icon = mobileMenuButton.querySelector('i');
+                    if (icon) {
+                        if (mainNav.classList.contains('open')) {
+                            icon.setAttribute('data-lucide', 'x');
+                        } else {
+                            icon.setAttribute('data-lucide', 'menu');
+                        }
+                        lucide.createIcons();
+                    }
+                });
+            }
+
+            if (articleId) {
+                fetch('data/articles.json')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Erro HTTP! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(articles => {
+                        const article = articles.find(a => a.id === articleId);
+
+                        if (article) {
+                            articleTitleTag.textContent = `${article.title} | Dr. Fernando Topanotti`;
+                            articleMetaDescription.content = article.description;
+                            articleMainTitle.textContent = article.title;
+                            articleDate.textContent = `Publicado em: ${article.date}`;
+
+                            articleImage.src = article.image;
+                            articleImage.alt = article.title;
+                            articleFullContent.innerHTML = article.fullContent;
+                        } else {
+                            articleTitleTag.textContent = 'Artigo não encontrado';
+                            articleMetaDescription.content = 'Artigo não encontrado no site do Dr. Fernando Topanotti.';
+                            articleMainTitle.textContent = 'Artigo não encontrado.';
+                            articleFullContent.innerHTML = '<p style="text-align: center;">Desculpe, o artigo que você procura não existe ou foi removido.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar o artigo:', error);
+                        articleTitleTag.textContent = 'Erro de Carregamento';
+                        articleMainTitle.textContent = 'Erro ao carregar o artigo.';
+                        articleFullContent.innerHTML = '<p style="text-align: center;">Ocorreu um erro ao tentar carregar o conteúdo do artigo. Por favor, tente novamente mais tarde.</p>';
+                    });
+            } else {
+                articleTitleTag.textContent = 'Artigo não especificado';
+                articleMainTitle.textContent = 'Nenhum artigo especificado.';
+                articleFullContent.innerHTML = '<p style="text-align: center;">Por favor, selecione um artigo para visualizar.</p>';
+            }
+
+            lucide.createIcons();
+
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            const mainContent = document.getElementById('main-site-content');
+            if (mainContent && mainContent.classList.contains('hidden')) {
+                mainContent.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>
