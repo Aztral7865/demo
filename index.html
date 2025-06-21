@@ -28,31 +28,27 @@
 
     <script>
         function detectarDispositivoERedirecionar() {
-            // Definimos 767px como a largura máxima para considerar como "mobile".
-            // Qualquer largura de viewport menor ou igual a 767px será direcionada para mobile.html.
-            // Qualquer largura maior que 767px será direcionada para desktop.html.
-            const larguraLimiteMobile = 767; 
+            const larguraLimiteMobile = 767;
+            const currentHash = window.location.hash; // Pega o hash atual da URL
 
-            // Linhas de depuração para o console (podem ser removidas após o teste)
             console.log('Largura atual da janela (innerWidth): ' + window.innerWidth + 'px');
             console.log('Largura limite para mobile (<=): ' + larguraLimiteMobile + 'px');
+            console.log('Hash atual: ' + currentHash); // Para depuração
 
             if (window.innerWidth <= larguraLimiteMobile) {
-                // Se a largura for menor ou igual ao limite, redireciona para a versão mobile
-                window.location.href = 'mobile.html';
+                // Adiciona o hash ao redirecionamento, se existir
+                window.location.replace('mobile.html' + currentHash);
             } else {
-                // Caso contrário, redireciona para a versão desktop
-                window.location.href = 'desktop.html';
+                // Adiciona o hash ao redirecionamento, se existir
+                window.location.replace('desktop.html' + currentHash);
             }
         }
 
         document.addEventListener('DOMContentLoaded', detectarDispositivoERedirecionar);
-        
-        // Mantemos o listener de 'resize' para facilitar o teste em desktop,
-        // permitindo que você redimensione a janela e veja o redirecionamento.
-        // Em produção, para um site real, você pode considerar removê-lo se o
-        // redirecionamento inicial for o único ponto de interesse.
-        window.addEventListener('resize', detectarDispositivoERedirecionar);
+        // Não precisamos do listener 'resize' para redirecionamento, pois queremos que aconteça apenas uma vez.
+        // O usuário já estará na versão correta da página após o primeiro carregamento.
+        // Remova a linha abaixo se você quer apenas o redirecionamento inicial:
+        // window.addEventListener('resize', detectarDispositivoERedirecionar);
     </script>
 </body>
 </html>
