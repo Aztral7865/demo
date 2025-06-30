@@ -61,26 +61,35 @@ header .flex {
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
+    /* Certifique-se de que não há um gap muito grande aqui se estiver apertado */
+    gap: 0.5rem; /* Reduzindo o gap entre os elementos do header para dar mais espaço */
 }
 
 header h1 {
-    font-size: 1.25rem;
+    font-size: 1.1rem; /* Reduzido de 1.25rem para 1.1rem */
     font-weight: 700;
     color: var(--gray-dark);
     margin: 0;
-    white-space: nowrap;
+    white-space: nowrap; /* Mantém o texto em uma linha */
+    overflow: hidden; /* Esconde o texto que transbordar */
+    text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
+    flex-grow: 1; /* Permite que o título ocupe o espaço disponível */
+    min-width: 0; /* Permite que o título encolha além do seu conteúdo intrínseco */
 }
 
 .logo-container {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-shrink: 1; /* Permite que o contêiner encolha */
+    min-width: 0; /* Essencial para que o item flexível possa encolher */
 }
 
 .logo-image {
     width: 2rem;
     height: 2rem;
     object-fit: contain;
+    flex-shrink: 0; /* Impede que a imagem encolha */
 }
 
 /* Keyframe para pulse-brain (se não existir em outro lugar) */
